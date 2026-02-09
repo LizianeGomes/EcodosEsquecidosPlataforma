@@ -1,18 +1,19 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class KillZone : MonoBehaviour
+public class InstantDeath : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            PlayerMovement player = collision.GetComponent<PlayerMovement>();
-
-            if (player != null)
-            {
-                // dano absurdamente alto pra garantir morte
-                player.TomarDano(99999f);
-            }
+            Morrer();
         }
+    }
+
+    void Morrer()
+    {
+        // Recarrega a cena atual
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
