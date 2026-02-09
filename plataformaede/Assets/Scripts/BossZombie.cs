@@ -95,6 +95,18 @@ public class BossZombie : MonoBehaviour
         // Destrói o zumbi após 1 segundo para permitir animação de morte
         Destroy(gameObject, 1f);
     }
+    
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Health vida = collision.gameObject.GetComponent<Health>();
+            if (vida != null)
+            {
+                vida.TomarDano(danoAtaque);
+            }
+        }
+    }
 
     void OnDrawGizmosSelected()
     {

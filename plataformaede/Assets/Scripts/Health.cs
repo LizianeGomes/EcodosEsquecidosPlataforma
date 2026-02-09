@@ -1,18 +1,27 @@
+using UnityEngine;
+
 public class Health : MonoBehaviour
 {
     public float maxVida = 100f;
-    private float vidaAtual;
+    public float vidaAtual;
 
-    void Start() { vidaAtual = maxVida; }
-
-    public void TomarDano(float quantidade)
+    void Awake()
     {
-        vidaAtual -= quantidade;
+        vidaAtual = maxVida;
+    }
+
+    public void TomarDano(float dano)
+    {
+        vidaAtual -= dano;
+
         if (vidaAtual <= 0)
         {
-            // Player morreu
-            Destroy(gameObject);
+            Morrer();
         }
     }
-}
 
+    void Morrer()
+    {
+        Destroy(gameObject);
+    }
+}
