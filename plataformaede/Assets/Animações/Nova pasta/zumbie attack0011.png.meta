@@ -1,0 +1,663 @@
+fileFormatVersion: 2
+guid: cd8ace512deba4b4a82684bce67eca28
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3250854532012587274
+    second: zumbie attack0011_0
+  - first:
+      213: -4903546309593455547
+    second: zumbie attack0011_1
+  - first:
+      213: 3272719055586169446
+    second: zumbie attack0011_2
+  - first:
+      213: 2777528221111470406
+    second: zumbie attack0011_3
+  - first:
+      213: 2610793004804000449
+    second: zumbie attack0011_4
+  - first:
+      213: -5211836891722866776
+    second: zumbie attack0011_5
+  - first:
+      213: -3967469265910360257
+    second: zumbie attack0011_6
+  - first:
+      213: -4978770714528914724
+    second: zumbie attack0011_7
+  - first:
+      213: 8479792431774373315
+    second: zumbie attack0011_8
+  - first:
+      213: 4394220290226016449
+    second: zumbie attack0011_9
+  - first:
+      213: 7786667358687481240
+    second: zumbie attack0011_10
+  - first:
+      213: -3040626919115907215
+    second: zumbie attack0011_11
+  - first:
+      213: -2354182923656946659
+    second: zumbie attack0011_12
+  - first:
+      213: -2072415159564856945
+    second: zumbie attack0011_13
+  - first:
+      213: 6651077484267490010
+    second: zumbie attack0011_14
+  - first:
+      213: 6215576954975465132
+    second: zumbie attack0011_15
+  - first:
+      213: 6917543147811865628
+    second: zumbie attack0011_16
+  - first:
+      213: -6992355834033559768
+    second: zumbie attack0011_17
+  - first:
+      213: 7991660086622552878
+    second: zumbie attack0011_18
+  - first:
+      213: 8819202563137982711
+    second: zumbie attack0011_19
+  - first:
+      213: 720464744007431973
+    second: zumbie attack0011_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 350
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: zumbie attack0011_0
+      rect:
+        serializedVersion: 2
+        x: 1374
+        y: 1749
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f6cbe2e605a2e2d0800000000000000
+      internalID: -3250854532012587274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zumbie attack0011_1
+      rect:
+        serializedVersion: 2
+        x: 2840
+        y: 1641
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 544210d8c9a13fbb0800000000000000
+      internalID: -4903546309593455547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zumbie attack0011_2
+      rect:
+        serializedVersion: 2
+        x: 1618
+        y: 905
+        width: 332
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6629dd534a80b6d20800000000000000
+      internalID: 3272719055586169446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zumbie attack0011_3
+      rect:
+        serializedVersion: 2
+        x: 2127
+        y: 1604
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 649c8fc7333cb8620800000000000000
+      internalID: 2777528221111470406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zumbie attack0011_4
+      rect:
+        serializedVersion: 2
+        x: 2060
+        y: 1531
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1caca61c7666b3420800000000000000
+      internalID: 2610793004804000449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zumbie attack0011_5
+      rect:
+        serializedVersion: 2
+        x: 2063
+        y: 1522
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8af1591e5f5dba7b0800000000000000
+      internalID: -5211836891722866776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zumbie attack0011_6
+      rect:
+        serializedVersion: 2
+        x: 1948
+        y: 1482
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f37122429b7b0f8c0800000000000000
+      internalID: -3967469265910360257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zumbie attack0011_7
+      rect:
+        serializedVersion: 2
+        x: 1963
+        y: 1469
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd2e26ee96ad7eab0800000000000000
+      internalID: -4978770714528914724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zumbie attack0011_8
+      rect:
+        serializedVersion: 2
+        x: 2143
+        y: 1460
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c515f0f9464ea570800000000000000
+      internalID: 8479792431774373315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zumbie attack0011_9
+      rect:
+        serializedVersion: 2
+        x: 2152
+        y: 1459
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c05cb782186bfc30800000000000000
+      internalID: 4394220290226016449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zumbie attack0011_10
+      rect:
+        serializedVersion: 2
+        x: 2115
+        y: 1399
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89d42ba05bccf0c60800000000000000
+      internalID: 7786667358687481240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zumbie attack0011_11
+      rect:
+        serializedVersion: 2
+        x: 1945
+        y: 1358
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17f1b9f4de58dc5d0800000000000000
+      internalID: -3040626919115907215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zumbie attack0011_12
+      rect:
+        serializedVersion: 2
+        x: 1962
+        y: 1366
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1c132b9a13445fd0800000000000000
+      internalID: -2354182923656946659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zumbie attack0011_13
+      rect:
+        serializedVersion: 2
+        x: 1948
+        y: 1335
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f81900b746d4d33e0800000000000000
+      internalID: -2072415159564856945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zumbie attack0011_14
+      rect:
+        serializedVersion: 2
+        x: 2141
+        y: 1319
+        width: 58
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adacc57abbf5d4c50800000000000000
+      internalID: 6651077484267490010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zumbie attack0011_15
+      rect:
+        serializedVersion: 2
+        x: 2003
+        y: 1209
+        width: 103
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: caeaa6b1f4a224650800000000000000
+      internalID: 6215576954975465132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zumbie attack0011_16
+      rect:
+        serializedVersion: 2
+        x: 1950
+        y: 1148
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1483cb97dc000060800000000000000
+      internalID: 6917543147811865628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zumbie attack0011_17
+      rect:
+        serializedVersion: 2
+        x: 2202
+        y: 1136
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 827ac418a6926fe90800000000000000
+      internalID: -6992355834033559768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zumbie attack0011_18
+      rect:
+        serializedVersion: 2
+        x: 2139
+        y: 1077
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e230ec4d18418ee60800000000000000
+      internalID: 7991660086622552878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zumbie attack0011_19
+      rect:
+        serializedVersion: 2
+        x: 2081
+        y: 1028
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f0dd0a410a146a70800000000000000
+      internalID: 8819202563137982711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zumbie attack0011_20
+      rect:
+        serializedVersion: 2
+        x: 2070
+        y: 1010
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52771c31eda9ff900800000000000000
+      internalID: 720464744007431973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      zumbie attack0011_0: -3250854532012587274
+      zumbie attack0011_1: -4903546309593455547
+      zumbie attack0011_10: 7786667358687481240
+      zumbie attack0011_11: -3040626919115907215
+      zumbie attack0011_12: -2354182923656946659
+      zumbie attack0011_13: -2072415159564856945
+      zumbie attack0011_14: 6651077484267490010
+      zumbie attack0011_15: 6215576954975465132
+      zumbie attack0011_16: 6917543147811865628
+      zumbie attack0011_17: -6992355834033559768
+      zumbie attack0011_18: 7991660086622552878
+      zumbie attack0011_19: 8819202563137982711
+      zumbie attack0011_2: 3272719055586169446
+      zumbie attack0011_20: 720464744007431973
+      zumbie attack0011_3: 2777528221111470406
+      zumbie attack0011_4: 2610793004804000449
+      zumbie attack0011_5: -5211836891722866776
+      zumbie attack0011_6: -3967469265910360257
+      zumbie attack0011_7: -4978770714528914724
+      zumbie attack0011_8: 8479792431774373315
+      zumbie attack0011_9: 4394220290226016449
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

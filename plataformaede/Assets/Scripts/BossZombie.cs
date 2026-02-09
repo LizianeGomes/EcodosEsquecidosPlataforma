@@ -4,56 +4,86 @@ using UnityEngine;
 public class BossZombie : MonoBehaviour
 {
     [Header("Referências")]
-    public Transform player;          // Player que ele vai perseguir
-    public Animator anim;             // Animator do zumbi
+    public Transform player;
+    public Animator anim;
 
     [Header("Movimento")]
-    public float speed = 2f;          // Velocidade do zumbi
-    public float distanciaAtaque = 1.5f; // Distância para atacar
+    public float speed = 2f;
+    public float distanciaDeteccao = 6f;
+    public float distanciaAtaque = 1.5f;
 
-    [Header("attack")]
-    public float danoAtaque = 10f;    // Dano que zumbi causa
-    public float cooldownAtaque = 1f; // Tempo entre ataques
+    [Header("Ataque do Zumbi")]
+    public float danoAtaque = 10f;
+    public float cooldownAtaque = 1f;
 
-    [Header("Vida")]
+    [Header("Vida do Zumbi")]
     public float maxVida = 100f;
-    
+    [Range(0f, 100f)]
+    public float danoRecebidoPercentual = 25f;
+
     private float vidaAtual;
     private Rigidbody2D rb;
     private float tempoUltimoAtaque;
-    private AudioSource audioSource;
+    private bool morto = false;
+
+    private AudioSource musicaZumbi;
+    private bool musicaTocando = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         if (anim == null) anim = GetComponent<Animator>();
-        
         vidaAtual = maxVida;
+            rb = GetComponent<Rigidbody2D>();
+            anim = GetComponent<Animator>();
 
-        audioSource = GetComponent<AudioSource>();
+            musicaZumbi = GetComponent<AudioSource>();
+            vidaAtual = maxVida;
     }
 
     void Update()
     {
-        if (player == null) return;
-
+        if (player == null || morto) return;
+        
         float distancia = Vector2.Distance(transform.position, player.position);
 
-        // Se o zumbi morreu, não faz nada
-        if (vidaAtual <= 0) return;
+// ===== CONTROLE DA MÚSICA DO ZUMBI =====
+        if (distancia <= distanciaDeteccao && !musicaTocando)
+        {
+            musicaZumbi.Play();
+            musicaTocando = true;
+        }
+        else if (distancia > distanciaDeteccao && musicaTocando)
+        {
+            musicaZumbi.Stop();
+            musicaTocando = false;
+        }
 
-        // Ataque
-        if (distancia <= distanciaAtaque)
+        if (distancia > distanciaDeteccao)
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            anim.SetBool("andando", false);
+            return;
+        }
+
+        if (distancia > distanciaAtaque)
+        {
+            Vector2 dir = (player.position - transform.position).normalized;
+            rb.linearVelocity = new Vector2(dir.x * speed, rb.linearVelocity.y);
+            anim.SetBool("andando", true);
+
+            transform.localScale = new Vector3(dir.x > 0 ? 1 : -1, 1, 1);
+        }
+        else
         {
             rb.linearVelocity = Vector2.zero;
-            anim.SetBool("run", false);
+            anim.SetBool("andando", false);
 
             if (Time.time - tempoUltimoAtaque >= cooldownAtaque)
             {
                 anim.SetTrigger("attack");
 
-                // Causa dano ao player
-                Health vidaPlayer = player.GetComponent<Health>();
+                PlayerMovement vidaPlayer = player.GetComponent<PlayerMovement>();
                 if (vidaPlayer != null)
                 {
                     vidaPlayer.TomarDano(danoAtaque);
@@ -62,25 +92,18 @@ public class BossZombie : MonoBehaviour
                 tempoUltimoAtaque = Time.time;
             }
         }
-        else // Segue o player
-        {
-            Vector2 direcao = (player.position - transform.position).normalized;
-            rb.linearVelocity = new Vector2(direcao.x * speed, rb.linearVelocity.y);
-
-            anim.SetBool("run", true);
-
-            // Virar sprite para olhar o jogador
-            if (direcao.x > 0)
-                transform.localScale = new Vector3(1, 1, 1);
-            else
-                transform.localScale = new Vector3(-1, 1, 1);
-        }
     }
 
-    // Função para receber dano do player
-    public void TomarDano(float quantidade)
+    // 🔥 CHAMADO PELO PLAYER
+    public void ReceberAtaqueDoPlayer()
     {
-        vidaAtual -= quantidade;
+        if (morto) return;
+
+        float dano = maxVida * (danoRecebidoPercentual / 100f);
+        vidaAtual -= dano;
+
+        anim.SetTrigger("hit");
+
         if (vidaAtual <= 0)
         {
             Morrer();
@@ -89,28 +112,28 @@ public class BossZombie : MonoBehaviour
 
     private void Morrer()
     {
+        morto = true;
         anim.SetTrigger("death_01");
         rb.linearVelocity = Vector2.zero;
+        rb.simulated = false;
+        Destroy(gameObject, 1.3f);
+        morto = true;
 
-        // Destrói o zumbi após 1 segundo para permitir animação de morte
-        Destroy(gameObject, 1f);
-    }
-    
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Health vida = collision.gameObject.GetComponent<Health>();
-            if (vida != null)
-            {
-                vida.TomarDano(danoAtaque);
-            }
-        }
+        if (musicaZumbi.isPlaying)
+            musicaZumbi.Stop();
+
+        anim.SetTrigger("death_01");
+        rb.linearVelocity = Vector2.zero;
+        rb.simulated = false;
+
+        Destroy(gameObject, 1.3f);
     }
 
     void OnDrawGizmosSelected()
     {
-        // Área de ataque
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, distanciaDeteccao);
+
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, distanciaAtaque);
     }
