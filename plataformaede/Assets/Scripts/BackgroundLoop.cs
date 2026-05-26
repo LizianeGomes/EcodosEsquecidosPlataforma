@@ -15,7 +15,7 @@ public class BackgroundFollowCamera : MonoBehaviour
     {
         transform.position = new Vector3(
             cam.position.x,
-            startPos.y,
+            cam.position.y,
             startPos.z
         );
     }
