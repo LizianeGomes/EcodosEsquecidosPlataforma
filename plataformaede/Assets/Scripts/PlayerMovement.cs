@@ -35,9 +35,13 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask inimigoLayer;
 
     [Header("Vida")]
-    public float maxVida = 100f;
+    public int maxVida = 3;
 
-    private float vidaAtual;
+    [Header("UI")]
+    public VidaUI vidaUI;
+
+    private int vidaAtual;
+
     private Rigidbody2D rb;
     private Animator anim;
     private AudioSource audioSource;
@@ -54,6 +58,9 @@ public class PlayerMovement : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         vidaAtual = maxVida;
+
+        // Atualiza os corações
+        vidaUI.AtualizarVida(vidaAtual);
     }
 
     void Update()
@@ -81,7 +88,9 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+
             anim.SetBool("pulo", true);
+
             audioSource.PlayOneShot(somPulo, volumePulo);
         }
 
@@ -102,13 +111,15 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (morto) return;
-        rb.linearVelocity = new Vector2(moveX * speed, rb.linearVelocity.y);
+
+       rb.linearVelocity = new Vector2(moveX * speed, rb.linearVelocity.y);
     }
 
     // ================= ATAQUE =================
     void Atacar()
     {
         anim.SetTrigger("atacando");
+
         audioSource.PlayOneShot(somAtaque, volumeAtaque);
 
         Collider2D[] inimigos = Physics2D.OverlapCircleAll(
@@ -117,22 +128,29 @@ public class PlayerMovement : MonoBehaviour
             inimigoLayer
         );
 
-        foreach (Collider2D inimigo in inimigos)
+        foreach (Collider2D Enemy in inimigos)
         {
-            BossZombie zumbi = inimigo.GetComponent<BossZombie>();
-            if (zumbi != null)
-            {
-                zumbi.ReceberAtaqueDoPlayer();
-            }
+               foreach (Collider2D enemy in inimigos)
+    {
+        EnemyAI enemy = Enemy.GetComponent<EnemyAI>();
+
+        if (enemy != null)
+        {
+            enemy.ReceberDano(1);
         }
     }
+            }
+        }
 
     // ================= VIDA =================
-    public void TomarDano(float dano)
+    public void TomarDano(int dano)
     {
         if (morto) return;
 
         vidaAtual -= dano;
+
+        // Atualiza UI
+        vidaUI.AtualizarVida(vidaAtual);
 
         if (vidaAtual <= 0)
         {
@@ -143,9 +161,10 @@ public class PlayerMovement : MonoBehaviour
     void Morrer()
     {
         morto = true;
+
         anim.SetTrigger("morto");
 
-        rb.linearVelocity = Vector2.zero;
+        rb.linearVelocity= Vector2.zero;
         rb.simulated = false;
 
         Invoke(nameof(ReiniciarCena), 1.5f);
@@ -163,15 +182,24 @@ public class PlayerMovement : MonoBehaviour
         audioSource.PlayOneShot(somAndar, volumePasso);
     }
 
+    // ================= GIZMOS =================
     void OnDrawGizmosSelected()
     {
         if (groundCheck != null)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+
+            Gizmos.DrawWireSphere(
+                groundCheck.position,
+                groundCheckRadius
+            );
         }
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, alcanceAtaque);
+
+        Gizmos.DrawWireSphere(
+            transform.position,
+            alcanceAtaque
+        );
     }
 }
