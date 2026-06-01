@@ -21,14 +21,9 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip somAndar;
 
     [Header("Volumes")]
-    [Range(0f, 1f)]
-    public float volumePulo = 0.4f;
-
-    [Range(0f, 1f)]
-    public float volumeAtaque = 0.7f;
-
-    [Range(0f, 1f)]
-    public float volumePasso = 0.5f;
+    [Range(0f, 1f)] public float volumePulo = 0.4f;
+    [Range(0f, 1f)] public float volumeAtaque = 0.7f;
+    [Range(0f, 1f)] public float volumePasso = 0.5f;
 
     [Header("Ataque")]
     public float alcanceAtaque = 1.5f;
@@ -59,15 +54,15 @@ public class PlayerMovement : MonoBehaviour
 
         vidaAtual = maxVida;
 
-        // Atualiza os corações
-        vidaUI.AtualizarVida(vidaAtual);
+        if (vidaUI != null)
+            vidaUI.AtualizarVida(vidaAtual);
     }
 
     void Update()
     {
         if (morto) return;
 
-        // ================= MOVIMENTO =================
+        // Movimento
         moveX = Input.GetAxisRaw("Horizontal");
 
         if (moveX > 0)
@@ -75,23 +70,29 @@ public class PlayerMovement : MonoBehaviour
         else if (moveX < 0)
             transform.localScale = new Vector3(-1, 1, 1);
 
-        anim.SetBool("andando", moveX != 0);
+        anim.SetBool("Andando", moveX != 0);
 
-        // ================= CHÃO =================
+        // Chão
         isGrounded = Physics2D.OverlapCircle(
             groundCheck.position,
             groundCheckRadius,
             groundLayer
         );
 
-        // ================= PULO =================
+        // Pulo
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            rb.linearVelocity = new Vector2(
+                rb.linearVelocity.x,
+                jumpForce
+            );
 
             anim.SetBool("pulo", true);
 
-            audioSource.PlayOneShot(somPulo, volumePulo);
+            audioSource.PlayOneShot(
+                somPulo,
+                volumePulo
+            );
         }
 
         if (!wasGrounded && isGrounded)
@@ -99,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("pulo", false);
         }
 
-        // ================= ATAQUE =================
+        // Ataque
         if (Input.GetKeyDown(KeyCode.Z))
         {
             Atacar();
@@ -112,15 +113,20 @@ public class PlayerMovement : MonoBehaviour
     {
         if (morto) return;
 
-       rb.linearVelocity = new Vector2(moveX * speed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(
+            moveX * speed,
+            rb.linearVelocity.y
+        );
     }
 
-    // ================= ATAQUE =================
     void Atacar()
     {
         anim.SetTrigger("atacando");
 
-        audioSource.PlayOneShot(somAtaque, volumeAtaque);
+        audioSource.PlayOneShot(
+            somAtaque,
+            volumeAtaque
+        );
 
         Collider2D[] inimigos = Physics2D.OverlapCircleAll(
             transform.position,
@@ -128,29 +134,26 @@ public class PlayerMovement : MonoBehaviour
             inimigoLayer
         );
 
-        foreach (Collider2D Enemy in inimigos)
+        foreach (Collider2D enemyCollider in inimigos)
         {
-               foreach (Collider2D enemy in inimigos)
-    {
-        EnemyAI enemy = Enemy.GetComponent<EnemyAI>();
+            EnemyAI enemy =
+                enemyCollider.GetComponent<EnemyAI>();
 
-        if (enemy != null)
-        {
-            enemy.ReceberDano(1);
-        }
-    }
+            if (enemy != null)
+            {
+                enemy.ReceberDano(1);
             }
         }
+    }
 
-    // ================= VIDA =================
     public void TomarDano(int dano)
     {
         if (morto) return;
 
         vidaAtual -= dano;
 
-        // Atualiza UI
-        vidaUI.AtualizarVida(vidaAtual);
+        if (vidaUI != null)
+            vidaUI.AtualizarVida(vidaAtual);
 
         if (vidaAtual <= 0)
         {
@@ -164,7 +167,7 @@ public class PlayerMovement : MonoBehaviour
 
         anim.SetTrigger("morto");
 
-        rb.linearVelocity= Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         rb.simulated = false;
 
         Invoke(nameof(ReiniciarCena), 1.5f);
@@ -172,23 +175,25 @@ public class PlayerMovement : MonoBehaviour
 
     void ReiniciarCena()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(
+            SceneManager.GetActiveScene().buildIndex
+        );
     }
 
-    // ================= SOM DE PASSO =================
     // Chamado por Animation Event
     public void TocarSomPasso()
     {
-        audioSource.PlayOneShot(somAndar, volumePasso);
+        audioSource.PlayOneShot(
+            somAndar,
+            volumePasso
+        );
     }
 
-    // ================= GIZMOS =================
     void OnDrawGizmosSelected()
     {
         if (groundCheck != null)
         {
             Gizmos.color = Color.red;
-
             Gizmos.DrawWireSphere(
                 groundCheck.position,
                 groundCheckRadius
@@ -196,7 +201,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Gizmos.color = Color.yellow;
-
         Gizmos.DrawWireSphere(
             transform.position,
             alcanceAtaque
