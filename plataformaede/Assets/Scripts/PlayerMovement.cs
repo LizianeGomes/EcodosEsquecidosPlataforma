@@ -29,22 +29,30 @@ public class PlayerMovement : MonoBehaviour
     public float alcanceAtaque = 1.5f;
     public LayerMask inimigoLayer;
 
-    [Header("Vida")]
+    [Header("HP")]
     public int maxVida = 3;
+
+    private int vidaAtual;
+
+    [Header("Vidas")]
+    public int vidasRestantes = 3;
+
+    [Header("Respawn")]
+    public Transform respawnPoint;
 
     [Header("UI")]
     public VidaUI vidaUI;
 
-    private int vidaAtual;
-
     private Rigidbody2D rb;
     private Animator anim;
     private AudioSource audioSource;
+    public Transform checkpointAtual;
 
     private float moveX;
     private bool isGrounded;
     private bool wasGrounded;
     private bool morto = false;
+    
 
     void Start()
     {
@@ -55,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
         vidaAtual = maxVida;
 
         if (vidaUI != null)
-            vidaUI.AtualizarVida(vidaAtual);
+            vidaUI.AtualizarVida(vidasRestantes);
     }
 
     void Update()
@@ -152,9 +160,6 @@ public class PlayerMovement : MonoBehaviour
 
         vidaAtual -= dano;
 
-        if (vidaUI != null)
-            vidaUI.AtualizarVida(vidaAtual);
-
         if (vidaAtual <= 0)
         {
             Morrer();
@@ -162,16 +167,43 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Morrer()
+{
+    morto = true;
+
+    vidasRestantes--;
+
+    if (vidaUI != null)
+        vidaUI.AtualizarVida(vidasRestantes);
+
+    if (vidasRestantes <= 0)
     {
-        morto = true;
-
-        anim.SetTrigger("morto");
-
         rb.linearVelocity = Vector2.zero;
         rb.simulated = false;
 
         Invoke(nameof(ReiniciarCena), 1.5f);
+        return;
     }
+
+    Invoke(nameof(Respawn), 1f);
+}
+    void Respawn()
+{
+    vidaAtual = maxVida;
+
+    if (checkpointAtual != null)
+    {
+        transform.position = checkpointAtual.position;
+    }
+    else if (respawnPoint != null)
+    {
+        transform.position = respawnPoint.position;
+    }
+
+    rb.linearVelocity = Vector2.zero;
+    rb.simulated = true;
+
+    morto = false;
+}
 
     void ReiniciarCena()
     {
@@ -206,4 +238,9 @@ public class PlayerMovement : MonoBehaviour
             alcanceAtaque
         );
     }
+    public void SetCheckpoint(Transform novoCheckpoint)
+{
+    checkpointAtual = novoCheckpoint;
+     Debug.Log("Checkpoint salvo: " + novoCheckpoint.name);
+}
 }
