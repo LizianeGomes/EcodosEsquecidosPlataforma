@@ -180,11 +180,11 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         rb.simulated = false;
 
-        Invoke(nameof(ReiniciarCena), 1.5f);
+        ReiniciarCena();
         return;
     }
 
-    Invoke(nameof(Respawn), 1f);
+    Respawn();
 }
     void Respawn()
 {
