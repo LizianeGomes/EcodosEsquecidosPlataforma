@@ -68,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        anim.SetBool("pulo", !isGrounded);
         if (morto) return;
 
         // Movimento
@@ -103,10 +104,7 @@ public class PlayerMovement : MonoBehaviour
             );
         }
 
-        if (!wasGrounded && isGrounded)
-        {
-            anim.SetBool("pulo", false);
-        }
+        anim.SetBool("pulo", !isGrounded);
 
         // Ataque
         if (Input.GetKeyDown(KeyCode.Z))
@@ -187,23 +185,25 @@ public class PlayerMovement : MonoBehaviour
     Respawn();
 }
     void Respawn()
-{
-    vidaAtual = maxVida;
-
-    if (checkpointAtual != null)
     {
-        transform.position = checkpointAtual.position;
-    }
-    else if (respawnPoint != null)
-    {
-        transform.position = respawnPoint.position;
-    }
+        vidaAtual = maxVida;
 
-    rb.linearVelocity = Vector2.zero;
-    rb.simulated = true;
+        if (checkpointAtual != null)
+            transform.position = checkpointAtual.position;
+        else if (respawnPoint != null)
+            transform.position = respawnPoint.position;
 
-    morto = false;
-}
+        rb.linearVelocity = Vector2.zero;
+        rb.simulated = true;
+        morto = false;
+
+        CameraFollow2D cam = Camera.main.GetComponent<CameraFollow2D>();
+
+        if (cam != null)
+        {
+            cam.TeleportToTarget();
+        }
+    }
 
     void ReiniciarCena()
     {

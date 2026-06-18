@@ -21,4 +21,13 @@ public class CameraFollow2D : MonoBehaviour
 
         transform.position = smoothPosition;
     }
+    public void TeleportToTarget()
+    {
+        if (target == null) return;
+
+        Vector3 pos = target.position + offset;
+        pos.z = transform.position.z;
+
+        transform.position = pos;
+    }
 }
