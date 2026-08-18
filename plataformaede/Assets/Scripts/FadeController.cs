@@ -13,10 +13,9 @@ public class FadeController : MonoBehaviour
         StartCoroutine(FadeOut(nomeCena));
     }
 
-    IEnumerator FadeOut(string nomeCena)
+    private IEnumerator FadeOut(string nomeCena)
     {
         float tempo = 0f;
-        Color cor = fadeImage.color;
 
         while (tempo < duracao)
         {
@@ -24,12 +23,9 @@ public class FadeController : MonoBehaviour
 
             float alpha = Mathf.Lerp(0f, 1f, tempo / duracao);
 
-            fadeImage.color = new Color(
-                cor.r,
-                cor.g,
-                cor.b,
-                alpha
-            );
+            Color cor = fadeImage.color;
+            cor.a = alpha;
+            fadeImage.color = cor;
 
             yield return null;
         }
