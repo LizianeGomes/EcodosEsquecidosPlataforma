@@ -13,12 +13,7 @@ public class CameraFollow2D : MonoBehaviour
         Vector3 desiredPosition = target.position + offset;
         desiredPosition.z = transform.position.z; // mantém o Z da câmera
 
-        Vector3 smoothPosition = Vector3.Lerp(
-            transform.position,
-            desiredPosition,
-            smoothSpeed * Time.deltaTime
-        );
-
+        Vector3 smoothPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
         transform.position = smoothPosition;
     }
     public void TeleportToTarget()
