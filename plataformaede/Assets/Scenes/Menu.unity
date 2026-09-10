@@ -148,6 +148,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1457218054}
   - {fileID: 758432626}
   - {fileID: 637652611}
   m_Father: {fileID: 1918748887}
@@ -216,7 +217,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 973509186}
-  - {fileID: 1457218054}
   m_Father: {fileID: 590272525}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -270,7 +270,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 637652615}
         m_TargetAssemblyTypeName: BotaoCreditos, Assembly-CSharp
-        m_MethodName: IrParaCreditos
+        m_MethodName: AbrirCreditos
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -747,6 +747,7 @@ GameObject:
   - component: {fileID: 1457218057}
   - component: {fileID: 1457218056}
   - component: {fileID: 1457218055}
+  - component: {fileID: 1457218058}
   m_Layer: 5
   m_Name: jogar (1)
   m_TagString: Untagged
@@ -767,11 +768,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2084892201}
-  m_Father: {fileID: 637652611}
+  m_Father: {fileID: 590272525}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 217.67564, y: -218.70578}
+  m_AnchoredPosition: {x: 217.67564, y: -401}
   m_SizeDelta: {x: 435.3513, y: 97.6717}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1457218055
@@ -818,9 +819,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 851578523}
-        m_TargetAssemblyTypeName: MenuPrincipal, Assembly-CSharp
-        m_MethodName: Jogar
+      - m_Target: {fileID: 1457218058}
+        m_TargetAssemblyTypeName: BotaoCreditos, Assembly-CSharp
+        m_MethodName: SairDoJogo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -868,6 +869,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1457218053}
   m_CullTransparentMesh: 1
+--- !u!114 &1457218058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457218053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4694a90c23475d49bd6d160512e77cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BotaoCreditos
 --- !u!1 &1494523304
 GameObject:
   m_ObjectHideFlags: 0
