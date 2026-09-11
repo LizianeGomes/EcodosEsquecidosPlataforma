@@ -151,6 +151,12 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    public void PerderVidaDireto()
+    {
+        if (morto) return;
+
+        Morrer();
+    }
 
     public void TomarDano(int dano)
     {
