@@ -1,0 +1,1287 @@
+fileFormatVersion: 2
+guid: 7df56329b3a4e8946b55368e9cb98896
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3400547899433025454
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_0
+  - first:
+      213: 6834475301107096986
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_1
+  - first:
+      213: 5115028665550477875
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_2
+  - first:
+      213: -5970705759115381349
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_3
+  - first:
+      213: -8906223975724478306
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_4
+  - first:
+      213: 4678556135883805664
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_5
+  - first:
+      213: -4474547081022591488
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_6
+  - first:
+      213: 8984752992565979115
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_7
+  - first:
+      213: -4111675992792492744
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_8
+  - first:
+      213: 7490580116587154066
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_9
+  - first:
+      213: 457957601988378578
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_10
+  - first:
+      213: -4984775930234789381
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_11
+  - first:
+      213: 3458420349477163769
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_12
+  - first:
+      213: -1967080747607829529
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_13
+  - first:
+      213: 583907433273665715
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_14
+  - first:
+      213: 2711241523341986647
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_15
+  - first:
+      213: 4590441861180527038
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_16
+  - first:
+      213: 8765355852241189616
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_17
+  - first:
+      213: -1269726952934887614
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_18
+  - first:
+      213: -1457491069642606066
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_19
+  - first:
+      213: 5681550357436300023
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_20
+  - first:
+      213: 4410098989429012675
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_21
+  - first:
+      213: 2657436681266646149
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_22
+  - first:
+      213: -1363703605379763587
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_23
+  - first:
+      213: -4359592847522428824
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_24
+  - first:
+      213: -7235065451098970752
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_25
+  - first:
+      213: 5059100658223635972
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_26
+  - first:
+      213: -4948069097629059383
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_27
+  - first:
+      213: -840436777404831507
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_28
+  - first:
+      213: -4313258193103817324
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_29
+  - first:
+      213: -6983483623236252377
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_30
+  - first:
+      213: -4116968860791037306
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_31
+  - first:
+      213: -1445708277061383834
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_32
+  - first:
+      213: -6478187018880219222
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_33
+  - first:
+      213: -4779261036859191982
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_34
+  - first:
+      213: 6253467276960876336
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_35
+  - first:
+      213: 673191826311585800
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_36
+  - first:
+      213: -5435199295961180091
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_37
+  - first:
+      213: 7123727214355500520
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_38
+  - first:
+      213: 6792258614918590472
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_39
+  - first:
+      213: 4278065119729927094
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_40
+  - first:
+      213: -4441163436175802131
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_41
+  - first:
+      213: 5863184377538166381
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_42
+  - first:
+      213: -8868811221330672045
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_43
+  - first:
+      213: 7294137633873305122
+    second: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_44
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 2246
+        width: 248
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaff7633c4c213f20800000000000000
+      internalID: 3400547899433025454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_1
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 2365
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9d5ba4631fe8de50800000000000000
+      internalID: 6834475301107096986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_2
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 2390
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33a9312887b3cf640800000000000000
+      internalID: 5115028665550477875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_3
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 2246
+        width: 248
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b957c890fbac32da0800000000000000
+      internalID: -5970705759115381349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_4
+      rect:
+        serializedVersion: 2
+        x: 1061
+        y: 2365
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9010e43b7cb66480800000000000000
+      internalID: -8906223975724478306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_5
+      rect:
+        serializedVersion: 2
+        x: 1086
+        y: 2390
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e3141d74029de040800000000000000
+      internalID: 4678556135883805664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_6
+      rect:
+        serializedVersion: 2
+        x: 1208
+        y: 2246
+        width: 248
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00e23e0132737e1c0800000000000000
+      internalID: -4474547081022591488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_7
+      rect:
+        serializedVersion: 2
+        x: 1662
+        y: 2365
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be7e5845e3140bc70800000000000000
+      internalID: 8984752992565979115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_8
+      rect:
+        serializedVersion: 2
+        x: 1687
+        y: 2390
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8351a1a187460f6c0800000000000000
+      internalID: -4111675992792492744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_9
+      rect:
+        serializedVersion: 2
+        x: 1809
+        y: 2246
+        width: 248
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29a08c2ede2e3f760800000000000000
+      internalID: 7490580116587154066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_10
+      rect:
+        serializedVersion: 2
+        x: 2263
+        y: 2365
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dff4bc330efa5600800000000000000
+      internalID: 457957601988378578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_11
+      rect:
+        serializedVersion: 2
+        x: 2288
+        y: 2390
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf12071b3b482dab0800000000000000
+      internalID: -4984775930234789381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_12
+      rect:
+        serializedVersion: 2
+        x: 2410
+        y: 2397
+        width: 90
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f2919efbf6ceff20800000000000000
+      internalID: 3458420349477163769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_13
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 111
+        width: 2338
+        height: 2249
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e3535a6b7683b4e0800000000000000
+      internalID: -1967080747607829529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_14
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 2308
+        width: 53
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b8acf587b47a1800800000000000000
+      internalID: 583907433273665715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_15
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 2345
+        width: 23
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75b861bfcc340a520800000000000000
+      internalID: 2711241523341986647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_16
+      rect:
+        serializedVersion: 2
+        x: 1004
+        y: 2308
+        width: 53
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb19fb13d8684bf30800000000000000
+      internalID: 4590441861180527038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_17
+      rect:
+        serializedVersion: 2
+        x: 1047
+        y: 2345
+        width: 23
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fa3abee4bcc4a970800000000000000
+      internalID: 8765355852241189616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_18
+      rect:
+        serializedVersion: 2
+        x: 1605
+        y: 2308
+        width: 53
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24fa3984016016ee0800000000000000
+      internalID: -1269726952934887614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_19
+      rect:
+        serializedVersion: 2
+        x: 1648
+        y: 2345
+        width: 23
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0af5a22893f5cbe0800000000000000
+      internalID: -1457491069642606066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_20
+      rect:
+        serializedVersion: 2
+        x: 2206
+        y: 2308
+        width: 53
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fafb7ca2fbe8de40800000000000000
+      internalID: 5681550357436300023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_21
+      rect:
+        serializedVersion: 2
+        x: 2249
+        y: 2345
+        width: 23
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c8b9394aa1d33d30800000000000000
+      internalID: 4410098989429012675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_22
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 1968
+        width: 42
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58ccdf7f49c11e420800000000000000
+      internalID: 2657436681266646149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_23
+      rect:
+        serializedVersion: 2
+        x: 2473
+        y: 1969
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d727b6ecbc6231de0800000000000000
+      internalID: -1363703605379763587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_24
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 1645
+        width: 248
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 868871e376d9f73c0800000000000000
+      internalID: -4359592847522428824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_25
+      rect:
+        serializedVersion: 2
+        x: 2410
+        y: 1796
+        width: 90
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0856b842e42e79b90800000000000000
+      internalID: -7235065451098970752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_26
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 1367
+        width: 42
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40e5d509e39853640800000000000000
+      internalID: 5059100658223635972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_27
+      rect:
+        serializedVersion: 2
+        x: 2473
+        y: 1368
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c67bb72f5de45bb0800000000000000
+      internalID: -4948069097629059383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_28
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 1044
+        width: 248
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de86c9a243b2654f0800000000000000
+      internalID: -840436777404831507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_29
+      rect:
+        serializedVersion: 2
+        x: 2410
+        y: 1195
+        width: 90
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 495f087a68a3424c0800000000000000
+      internalID: -4313258193103817324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_30
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 766
+        width: 42
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72dce3e05aea51f90800000000000000
+      internalID: -6983483623236252377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_31
+      rect:
+        serializedVersion: 2
+        x: 2473
+        y: 767
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 682a43d32a69dd6c0800000000000000
+      internalID: -4116968860791037306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_32
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 443
+        width: 248
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6690ae05bffcfebe0800000000000000
+      internalID: -1445708277061383834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_33
+      rect:
+        serializedVersion: 2
+        x: 2410
+        y: 594
+        width: 90
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa7091faa3bd816a0800000000000000
+      internalID: -6478187018880219222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_34
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 165
+        width: 42
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25d84299867acadb0800000000000000
+      internalID: -4779261036859191982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_35
+      rect:
+        serializedVersion: 2
+        x: 2473
+        y: 166
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03748c92b57c8c650800000000000000
+      internalID: 6253467276960876336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_36
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 0
+        width: 96
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 800aff83668a75900800000000000000
+      internalID: 673191826311585800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_37
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 0
+        width: 35
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 548d7c8890b4294b0800000000000000
+      internalID: -5435199295961180091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_38
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 0
+        width: 96
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ed417888209cd260800000000000000
+      internalID: 7123727214355500520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_39
+      rect:
+        serializedVersion: 2
+        x: 1086
+        y: 0
+        width: 35
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8003fcc2933f24e50800000000000000
+      internalID: 6792258614918590472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_40
+      rect:
+        serializedVersion: 2
+        x: 1208
+        y: 0
+        width: 96
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b3cd7b6f8dbe5b30800000000000000
+      internalID: 4278065119729927094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_41
+      rect:
+        serializedVersion: 2
+        x: 1687
+        y: 0
+        width: 35
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de0c9459261dd52c0800000000000000
+      internalID: -4441163436175802131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_42
+      rect:
+        serializedVersion: 2
+        x: 1809
+        y: 0
+        width: 96
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6e38cb70273e5150800000000000000
+      internalID: 5863184377538166381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_43
+      rect:
+        serializedVersion: 2
+        x: 2288
+        y: 0
+        width: 35
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3564694ee27abe480800000000000000
+      internalID: -8868811221330672045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_44
+      rect:
+        serializedVersion: 2
+        x: 2410
+        y: 0
+        width: 90
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22e93d1388bf93560800000000000000
+      internalID: 7294137633873305122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_0: 3400547899433025454
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_1: 6834475301107096986
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_10: 457957601988378578
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_11: -4984775930234789381
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_12: 3458420349477163769
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_13: -1967080747607829529
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_14: 583907433273665715
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_15: 2711241523341986647
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_16: 4590441861180527038
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_17: 8765355852241189616
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_18: -1269726952934887614
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_19: -1457491069642606066
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_2: 5115028665550477875
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_20: 5681550357436300023
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_21: 4410098989429012675
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_22: 2657436681266646149
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_23: -1363703605379763587
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_24: -4359592847522428824
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_25: -7235065451098970752
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_26: 5059100658223635972
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_27: -4948069097629059383
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_28: -840436777404831507
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_29: -4313258193103817324
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_3: -5970705759115381349
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_30: -6983483623236252377
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_31: -4116968860791037306
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_32: -1445708277061383834
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_33: -6478187018880219222
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_34: -4779261036859191982
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_35: 6253467276960876336
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_36: 673191826311585800
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_37: -5435199295961180091
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_38: 7123727214355500520
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_39: 6792258614918590472
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_4: -8906223975724478306
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_40: 4278065119729927094
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_41: -4441163436175802131
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_42: 5863184377538166381
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_43: -8868811221330672045
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_44: 7294137633873305122
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_5: 4678556135883805664
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_6: -4474547081022591488
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_7: 8984752992565979115
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_8: -4111675992792492744
+      pngtree-sonic-the-hedgehog-inspired-star-png-image_15879649_9: 7490580116587154066
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

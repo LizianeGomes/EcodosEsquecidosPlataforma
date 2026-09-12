@@ -194,20 +194,20 @@ public class PlayerMovement : MonoBehaviour
     {
         vidaAtual = maxVida;
 
-        if (checkpointAtual != null)
-            transform.position = checkpointAtual.position;
-        else if (respawnPoint != null)
-            transform.position = respawnPoint.position;
+        Vector3 posicaoAnterior = transform.position;
+        Vector3 novaPosicao = checkpointAtual != null ? checkpointAtual.position : respawnPoint.position;
+
+        transform.position = novaPosicao;
 
         rb.linearVelocity = Vector2.zero;
         rb.simulated = true;
         morto = false;
 
-        CameraFollow2D cam = Camera.main.GetComponent<CameraFollow2D>();
-
-        if (cam != null)
+        // Avisa o Cinemachine que o alvo "teleportou", evitando o glitch visual
+        Unity.Cinemachine.CinemachineCamera vcam = FindFirstObjectByType<Unity.Cinemachine.CinemachineCamera>();
+        if (vcam != null)
         {
-            cam.TeleportToTarget();
+            vcam.OnTargetObjectWarped(transform, novaPosicao - posicaoAnterior);
         }
     }
 
