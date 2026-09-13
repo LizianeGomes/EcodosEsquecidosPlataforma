@@ -578,6 +578,7 @@ MonoBehaviour:
   respawnPoint: {fileID: 1505578114}
   vidaUI: {fileID: 582574035}
   checkpointAtual: {fileID: 0}
+  tempoInvulneravel: 1
 --- !u!82 &81463183
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6779,7 +6780,7 @@ Camera:
   far clip plane: 1.2223434e+11
   field of view: 34
   orthographic: 1
-  orthographic size: 8.77
+  orthographic size: 8.39
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6804,7 +6805,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.75, y: -0.26, z: -10}
+  m_LocalPosition: {x: -4.7727184, y: 4.7164063, z: -10}
   m_LocalScale: {x: 1.3, y: 1.77, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7350,6 +7351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661189353}
+  - component: {fileID: 661189354}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -7372,6 +7374,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 81463187}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &661189354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661189352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 706a870b0f6bfdf428b95613d9a0c1aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraLookOffset
+  tempoParaOlhar: 2
+  distanciaOffset: 3
+  velocidadeTransicao: 4
 --- !u!1 &706797063
 GameObject:
   m_ObjectHideFlags: 0
@@ -7568,6 +7585,7 @@ GameObject:
   - component: {fileID: 767413983}
   - component: {fileID: 767413982}
   - component: {fileID: 767413984}
+  - component: {fileID: 767413985}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -7600,7 +7618,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 34
-    OrthographicSize: 8.77
+    OrthographicSize: 8.39
     NearClipPlane: 1
     FarClipPlane: 1.2223434e+11
     Dutch: 0
@@ -7627,7 +7645,7 @@ Transform:
   m_GameObject: {fileID: 767413980}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.75, y: -0.26, z: -10}
+  m_LocalPosition: {x: -12.75, y: 4.8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7651,19 +7669,39 @@ MonoBehaviour:
     ScreenPosition: {x: 0, y: 0}
     DeadZone:
       Enabled: 1
-      Size: {x: 0.05, y: 0.2}
+      Size: {x: 0, y: 0}
     HardLimits:
       Enabled: 0
       Size: {x: 2, y: 0.8}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 0, z: 0}
-  Damping: {x: 0.5, y: 2, z: 1}
+  TargetOffset: {x: 0, y: 5.06, z: 0}
+  Damping: {x: 0.5, y: 0.3, z: 1}
   Lookahead:
     Enabled: 0
     Time: 0
     Smoothing: 0
     IgnoreY: 0
+--- !u!114 &767413985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767413980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineConfiner2D
+  BoundingShape2D: {fileID: 1577566354}
+  Damping: 0.5
+  SlowingDistance: 5
+  OversizeWindow:
+    Enabled: 0
+    MaxWindowSize: 0
+    Padding: 0
+  m_LegacyMaxWindowSize: -2
 --- !u!4 &824231383 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8937640988141104438, guid: fc0abd3472df90a4aaefad069c2fe0da, type: 3}
@@ -8160,7 +8198,7 @@ Transform:
   m_GameObject: {fileID: 1061363419}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.85, y: -0.56, z: 0}
+  m_LocalPosition: {x: -4.73, y: 4.22, z: 0}
   m_LocalScale: {x: 0.94669867, y: 0.82447886, z: 1.3269465}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8178,7 +8216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e805a2958326ee745964fd7fa6120f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Parallax
-  camera: {fileID: 767413983}
+  camera: {fileID: 519420032}
   parallaxFactor: 1
 --- !u!1001 &1106977394
 PrefabInstance:
@@ -9241,7 +9279,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

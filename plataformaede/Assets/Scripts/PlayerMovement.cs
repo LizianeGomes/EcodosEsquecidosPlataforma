@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Respawn")]
     public Transform respawnPoint;
+    
 
     [Header("UI")]
     public VidaUI vidaUI;
@@ -52,7 +53,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private bool wasGrounded;
     private bool morto = false;
-    
+    private bool invulneravel = false;
+    [SerializeField] private float tempoInvulneravel = 1f;
 
     void Start()
     {
@@ -153,14 +155,14 @@ public class PlayerMovement : MonoBehaviour
     }
     public void PerderVidaDireto()
     {
-        if (morto) return;
+        if (morto || invulneravel) return;
 
         Morrer();
     }
 
     public void TomarDano(int dano)
     {
-        if (morto) return;
+        if (morto || invulneravel) return;
 
         vidaAtual -= dano;
 
@@ -192,6 +194,8 @@ public class PlayerMovement : MonoBehaviour
 }
     void Respawn()
     {
+        StartCoroutine(InvulnerabilidadeTemporaria());
+
         vidaAtual = maxVida;
 
         Vector3 posicaoAnterior = transform.position;
@@ -203,13 +207,19 @@ public class PlayerMovement : MonoBehaviour
         rb.simulated = true;
         morto = false;
 
-        // Avisa o Cinemachine que o alvo "teleportou", evitando o glitch visual
         Unity.Cinemachine.CinemachineCamera vcam = FindFirstObjectByType<Unity.Cinemachine.CinemachineCamera>();
         if (vcam != null)
         {
             vcam.OnTargetObjectWarped(transform, novaPosicao - posicaoAnterior);
         }
+
+        Parallax[] camadasParallax = FindObjectsByType<Parallax>(FindObjectsSortMode.None);
+        foreach (Parallax camada in camadasParallax)
+        {
+            camada.ResetLastCameraPosition();
+        }
     }
+    
 
     void ReiniciarCena()
     {
@@ -249,4 +259,10 @@ public class PlayerMovement : MonoBehaviour
     checkpointAtual = novoCheckpoint;
      Debug.Log("Checkpoint salvo: " + novoCheckpoint.name);
 }
+    private System.Collections.IEnumerator InvulnerabilidadeTemporaria()
+    {
+        invulneravel = true;
+        yield return new WaitForSeconds(tempoInvulneravel);
+        invulneravel = false;
+    }
 }

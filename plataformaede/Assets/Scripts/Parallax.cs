@@ -18,4 +18,10 @@ public class Parallax : MonoBehaviour
         transform.position += new Vector3(delta.x * parallaxFactor, delta.y * parallaxFactor, 0);
         lastCameraPosition = camera.position;
     }
+    
+    public void ResetLastCameraPosition()
+    {
+        if (camera != null)
+            lastCameraPosition = camera.position;
+    }
 }
