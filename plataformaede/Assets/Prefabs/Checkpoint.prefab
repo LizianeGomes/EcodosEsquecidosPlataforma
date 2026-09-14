@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e2ea0c4525b7c4794df6a8e9e8b0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint
+  checkpointParticles: {fileID: 0}
 --- !u!1 &7952989805706593995
 GameObject:
   m_ObjectHideFlags: 0
