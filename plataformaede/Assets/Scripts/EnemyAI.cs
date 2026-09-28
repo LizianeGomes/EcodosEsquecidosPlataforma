@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Movimento")]
     public float speed = 3f;
+    public float distanciaDeteccao = 8f;   
     public float distanciaAtaque = 1.2f;
 
     [Header("Vida")]
@@ -33,6 +34,12 @@ public class EnemyAI : MonoBehaviour
             transform.position,
             player.position
         );
+        
+        if (distancia > distanciaDeteccao)
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            return;
+        }
 
         // Seguir player
         if (distancia > distanciaAtaque)
