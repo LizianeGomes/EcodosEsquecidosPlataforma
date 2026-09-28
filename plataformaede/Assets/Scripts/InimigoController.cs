@@ -6,20 +6,23 @@ public class InimigoController : MonoBehaviour
     private bool morto = false;
     private Animator anim;
 
+    
     void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
+        Debug.Log("Animator encontrado em: " + anim.gameObject.name +
+                  " | controller: " + anim.runtimeAnimatorController);
     }
 
     public void MorrerPisado()
     {
-        
+        Debug.Log("MorrerPisado chamado");
         if (morto) return;
 
         morto = true;
 
         // Desativa colisores e movimento
-        GetComponent<EnemyAI>().enabled = false;
+        GetComponent<EnemyAI2>().enabled = false;
 
         Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
         foreach (Collider2D col in colliders)
