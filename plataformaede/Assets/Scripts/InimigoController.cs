@@ -13,6 +13,7 @@ public class InimigoController : MonoBehaviour
 
     public void MorrerPisado()
     {
+        
         if (morto) return;
 
         morto = true;
@@ -34,7 +35,7 @@ public class InimigoController : MonoBehaviour
 
     IEnumerator DestruirAposAnimacao()
     {
-        yield return new WaitForSeconds(0.6f); // ajuste pro tempo real da sua animação de morte
+        yield return new WaitForSeconds(1f); // ajuste pro tempo real da sua animação de morte
         Destroy(gameObject);
     }
 
