@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d59ea319b99fdd840b4ad6527f645432
+guid: 023000bc549595f4d98388ac82e88f97
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9078762385510534231
-    second: dcbhju_0
+      213: 8956957444178689040
+    second: dg1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -135,17 +135,56 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: VisionOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dcbhju_0
+      name: dg1_0
       rect:
         serializedVersion: 2
-        x: 1419
-        y: 970
-        width: 737
-        height: 626
+        x: 1390
+        y: 1186
+        width: 756
+        height: 652
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +193,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 75c888cc94e3efd70800000000000000
-      internalID: 9078762385510534231
+      spriteID: 01cbf88e6518d4c70800000000000000
+      internalID: 8956957444178689040
       vertices: []
       indices: 
       edges: []
@@ -174,7 +213,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      dcbhju_0: 9078762385510534231
+      dg1_0: 8956957444178689040
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
