@@ -186,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             rb.simulated = false;
 
-            GameOverManager.Instance.MostrarGameOver(); // trocado aqui
+            GameOverManager.Instance.MostrarGameOver();
             return;
         }
 
