@@ -173,25 +173,25 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Morrer()
-{
-    morto = true;
-
-    vidasRestantes--;
-
-    if (vidaUI != null)
-        vidaUI.AtualizarVida(vidasRestantes);
-
-    if (vidasRestantes <= 0)
     {
-        rb.linearVelocity = Vector2.zero;
-        rb.simulated = false;
+        morto = true;
 
-        ReiniciarCena();
-        return;
+        vidasRestantes--;
+
+        if (vidaUI != null)
+            vidaUI.AtualizarVida(vidasRestantes);
+
+        if (vidasRestantes <= 0)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.simulated = false;
+
+            GameOverManager.Instance.MostrarGameOver();
+            return;
+        }
+
+        Respawn();
     }
-
-    Respawn();
-}
     void Respawn()
     {
         StartCoroutine(InvulnerabilidadeTemporaria());
