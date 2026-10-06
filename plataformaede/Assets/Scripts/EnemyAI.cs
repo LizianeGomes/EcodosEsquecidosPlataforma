@@ -72,9 +72,11 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    // Dano recebido
+    
     public void ReceberDano(int danoRecebido)
     {
+        
+        
         vida -= danoRecebido;
 
         Debug.Log("Inimigo tomou dano!");

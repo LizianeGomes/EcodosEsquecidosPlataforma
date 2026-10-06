@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Ataque")]
     public float alcanceAtaque = 1.5f;
     public LayerMask inimigoLayer;
+   // [SerializeField] private int Dano = 3;
 
     [Header("HP")]
     public int maxVida = 3;
@@ -107,12 +108,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         anim.SetBool("pulo", !isGrounded);
-
-        // Ataque
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            Atacar();
-        }
+        
 
         wasGrounded = isGrounded;
     }
@@ -129,29 +125,35 @@ public class PlayerMovement : MonoBehaviour
 
     void Atacar()
     {
-        anim.SetTrigger("atacando");
 
-        audioSource.PlayOneShot(
-            somAtaque,
-            volumeAtaque
-        );
+       // if (Input.GetKeyDown(KeyCode.Mouse0))
+       // { audioSource.PlayOneShot(somAtaque, volumeAtaque); }
+       if (Input.GetKeyDown(KeyCode.Mouse0))
+       {
+           anim.SetTrigger("atacando");
 
-        Collider2D[] inimigos = Physics2D.OverlapCircleAll(
-            transform.position,
-            alcanceAtaque,
-            inimigoLayer
-        );
+           audioSource.PlayOneShot(
+               somAtaque,
+               volumeAtaque
+           );
 
-        foreach (Collider2D enemyCollider in inimigos)
-        {
-            EnemyAI enemy =
-                enemyCollider.GetComponent<EnemyAI>();
+           Collider2D[] inimigos = Physics2D.OverlapCircleAll(
+               transform.position,
+               alcanceAtaque,
+               inimigoLayer
+           );
 
-            if (enemy != null)
-            {
-                enemy.ReceberDano(1);
-            }
-        }
+           foreach (Collider2D enemyCollider in inimigos)
+           {
+               EnemyAI enemy =
+                   enemyCollider.GetComponent<EnemyAI>();
+
+               if (enemy != null)
+               {
+                   enemy.ReceberDano(1);
+               }
+           }
+       }
     }
     public void PerderVidaDireto()
     {
