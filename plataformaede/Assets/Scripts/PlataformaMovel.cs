@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class PlataformaMovel : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class PlataformaMovel : MonoBehaviour
 
     private Vector3 destino;
     private Rigidbody2D rb;
-    private Vector3 ultimaPosicao;
+    private HashSet<Rigidbody2D> playersEmCima = new HashSet<Rigidbody2D>();
 
     void Start()
     {
@@ -19,37 +20,54 @@ public class PlataformaMovel : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Kinematic;
         transform.position = pontoA.position;
         destino = pontoB.position;
-        ultimaPosicao = transform.position;
     }
 
     void FixedUpdate()
     {
+        Vector3 posicaoAntes = transform.position;
+
         Vector3 novaPos = Vector3.MoveTowards(transform.position, destino, velocidade * Time.fixedDeltaTime);
         rb.MovePosition(novaPos);
 
-        if (Vector3.Distance(transform.position, destino) < 0.05f)
+        Vector3 delta = novaPos - posicaoAntes;
+
+        foreach (Rigidbody2D playerRb in playersEmCima)
         {
-            destino = (destino == pontoA.position) ? pontoB.position : pontoA.position;
+            if (playerRb != null)
+            {
+                playerRb.position += (Vector2)delta;
+            }
         }
 
-        ultimaPosicao = transform.position;
+        if (Vector3.Distance(novaPos, destino) < 0.05f)
+        {
+            destino = (destino == (Vector3)pontoA.position) ? pontoB.position : pontoA.position;
+        }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag("Player")) return;
 
-        
         foreach (ContactPoint2D contato in collision.contacts)
         {
             if (contato.normal.y > 0.5f)
             {
-                Vector3 delta = transform.position - ultimaPosicao;
-                collision.transform.position += delta;
+                if (collision.rigidbody != null)
+                    playersEmCima.Add(collision.rigidbody);
                 break;
             }
         }
     }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Player")) return;
+
+        if (collision.rigidbody != null)
+            playersEmCima.Remove(collision.rigidbody);
+    }
+
     void OnDrawGizmos()
     {
         if (pontoA == null || pontoB == null) return;

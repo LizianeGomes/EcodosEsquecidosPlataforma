@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,7 +17,7 @@ public class PauseManager : MonoBehaviour
                 Pausar();
         }
     }
-
+    
     public void Pausar()
     {
         pausePanel.SetActive(true);
@@ -33,6 +34,7 @@ public class PauseManager : MonoBehaviour
 
     public void VoltarAoMenuPrincipal()
     {
+       
         Time.timeScale = 1f; 
         SceneManager.LoadScene("Menu");
     }
