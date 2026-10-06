@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2916423624531041289}
   - component: {fileID: 4542806931422493982}
   - component: {fileID: 4015240024355125229}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: nuvem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_MaskInteraction: 0
   m_Sprite: {fileID: -3446994302538887568, guid: bde5aacc6093713499b48f896770f53d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -167,7 +167,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &4015240024355125229
 MonoBehaviour:
   m_ObjectHideFlags: 0

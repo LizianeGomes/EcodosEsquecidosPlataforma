@@ -30,6 +30,19 @@ public class PlataformaCai : MonoBehaviour
         if (ativada) return;
         if (!collision.gameObject.CompareTag("Player")) return;
 
+        bool pisouEmCima = false;
+
+        foreach (ContactPoint2D contato in collision.contacts)
+        {
+            if (contato.normal.y < -0.5f)
+            {
+                pisouEmCima = true;
+                break;
+            }
+        }
+
+        if (!pisouEmCima) return;
+
         ativada = true;
         StartCoroutine(TremerCairEReaparecer());
     }
