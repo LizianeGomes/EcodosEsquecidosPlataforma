@@ -5,6 +5,8 @@ public class Projetil : MonoBehaviour
     public int dano = 1;
     public float tempoVida = 5f;
 
+    private bool jaAtingiu = false;
+
     void Start()
     {
         Destroy(gameObject, tempoVida);
@@ -12,12 +14,21 @@ public class Projetil : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        PlayerMovement player = other.GetComponent<PlayerMovement>();
+        if (jaAtingiu)
+            return;
+
+        PlayerMovement player =
+            other.GetComponentInParent<PlayerMovement>();
 
         if (player != null)
         {
+            jaAtingiu = true;
+
             player.TomarDano(dano);
+
             Destroy(gameObject);
         }
     }
 }
+
+

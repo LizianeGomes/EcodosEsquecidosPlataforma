@@ -29,11 +29,10 @@ public class PlayerMovement : MonoBehaviour
     public Transform pontoAtaque;
     public float raioAtaque = 0.6f;
     public int danoAtaque = 1;
-    public LayerMask inimigoLayer;
+    public LayerMask Enemy;
 
     [Header("HP")]
     public int maxVida = 3;
-
     private int vidaAtual;
 
     [Header("Vidas")]
@@ -41,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Respawn")]
     public Transform respawnPoint;
-    
 
     [Header("UI")]
     public VidaUI vidaUI;
@@ -49,14 +47,18 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private AudioSource audioSource;
+
     public Transform checkpointAtual;
 
     private float moveX;
     private bool isGrounded;
     private bool wasGrounded;
+
     private bool morto = false;
     private bool invulneravel = false;
-    [SerializeField] private float tempoInvulneravel = 1f;
+
+    [SerializeField]
+    private float tempoInvulneravel = 1f;
 
     void Start()
     {
@@ -73,26 +75,29 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         anim.SetBool("pulo", !isGrounded);
-        if (morto) return;
 
-        // Movimento
+        if (morto)
+            return;
+
         moveX = Input.GetAxisRaw("Horizontal");
 
         if (moveX > 0)
+        {
             transform.localScale = new Vector3(1, 1, 1);
+        }
         else if (moveX < 0)
+        {
             transform.localScale = new Vector3(-1, 1, 1);
+        }
 
         anim.SetBool("Andando", moveX != 0);
 
-        // Chão
         isGrounded = Physics2D.OverlapCircle(
             groundCheck.position,
             groundCheckRadius,
             groundLayer
         );
 
-        // Pulo
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.linearVelocity = new Vector2(
@@ -102,14 +107,10 @@ public class PlayerMovement : MonoBehaviour
 
             anim.SetBool("pulo", true);
 
-            audioSource.PlayOneShot(
-                somPulo,
-                volumePulo
-            );
+            audioSource.PlayOneShot(somPulo, volumePulo);
         }
 
         anim.SetBool("pulo", !isGrounded);
-        
 
         wasGrounded = isGrounded;
 
@@ -118,12 +119,10 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (morto) return;
+        if (morto)
+            return;
 
-        rb.linearVelocity = new Vector2(
-            moveX * speed,
-            rb.linearVelocity.y
-        );
+        rb.linearVelocity = new Vector2(moveX * speed, rb.linearVelocity.y);
     }
 
     void Atacar()
@@ -131,26 +130,21 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             anim.SetTrigger("atacando");
-
-            audioSource.PlayOneShot(
-                somAtaque,
-                volumeAtaque
-            );
+            audioSource.PlayOneShot(somAtaque, volumeAtaque);
         }
     }
-
 
     public void AplicarDanoAtaque()
     {
         Collider2D[] atingidos = Physics2D.OverlapCircleAll(
             pontoAtaque.position,
             raioAtaque,
-            inimigoLayer
+            Enemy
         );
 
         foreach (Collider2D c in atingidos)
         {
-            IDanificavel alvo = c.GetComponent<IDanificavel>();
+            IDanificavel alvo = c.GetComponentInParent<IDanificavel>();
 
             if (alvo != null)
             {
@@ -158,18 +152,23 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
     public void PerderVidaDireto()
     {
-        if (morto || invulneravel) return;
+        if (morto || invulneravel)
+            return;
 
         Morrer();
     }
 
     public void TomarDano(int dano)
     {
-        if (morto || invulneravel) return;
+        if (morto || invulneravel)
+            return;
 
         vidaAtual -= dano;
+
+        Debug.Log("PROJÉTIL ACERTOU! HP restante: " + vidaAtual);
 
         if (vidaAtual <= 0)
         {
@@ -182,6 +181,8 @@ public class PlayerMovement : MonoBehaviour
         morto = true;
 
         vidasRestantes--;
+
+        Debug.Log("VIDA PERDIDA! Vidas restantes: " + vidasRestantes);
 
         if (vidaUI != null)
             vidaUI.AtualizarVida(vidasRestantes);
@@ -197,6 +198,7 @@ public class PlayerMovement : MonoBehaviour
 
         Respawn();
     }
+
     void Respawn()
     {
         StartCoroutine(InvulnerabilidadeTemporaria());
@@ -204,42 +206,50 @@ public class PlayerMovement : MonoBehaviour
         vidaAtual = maxVida;
 
         Vector3 posicaoAnterior = transform.position;
-        Vector3 novaPosicao = checkpointAtual != null ? checkpointAtual.position : respawnPoint.position;
+
+        Vector3 novaPosicao = checkpointAtual != null
+            ? checkpointAtual.position
+            : respawnPoint.position;
 
         transform.position = novaPosicao;
 
         rb.linearVelocity = Vector2.zero;
         rb.simulated = true;
+
         morto = false;
 
-        Unity.Cinemachine.CinemachineCamera vcam = FindFirstObjectByType<Unity.Cinemachine.CinemachineCamera>();
+        Unity.Cinemachine.CinemachineCamera vcam =
+            FindFirstObjectByType<Unity.Cinemachine.CinemachineCamera>();
+
         if (vcam != null)
         {
             vcam.OnTargetObjectWarped(transform, novaPosicao - posicaoAnterior);
         }
 
         Parallax[] camadasParallax = FindObjectsByType<Parallax>(FindObjectsSortMode.None);
+
         foreach (Parallax camada in camadasParallax)
         {
             camada.ResetLastCameraPosition();
         }
     }
-    
 
-    void ReiniciarCena()
+    public void SetCheckpoint(Transform novoCheckpoint)
     {
-        SceneManager.LoadScene(
-            SceneManager.GetActiveScene().buildIndex
-        );
+        checkpointAtual = novoCheckpoint;
+        Debug.Log("Checkpoint salvo: " + novoCheckpoint.name);
     }
 
-    // Chamado por Animation Event
+    private System.Collections.IEnumerator InvulnerabilidadeTemporaria()
+    {
+        invulneravel = true;
+        yield return new WaitForSeconds(tempoInvulneravel);
+        invulneravel = false;
+    }
+
     public void TocarSomPasso()
     {
-        audioSource.PlayOneShot(
-            somAndar,
-            volumePasso
-        );
+        audioSource.PlayOneShot(somAndar, volumePasso);
     }
 
     void OnDrawGizmosSelected()
@@ -247,28 +257,13 @@ public class PlayerMovement : MonoBehaviour
         if (groundCheck != null)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(
-                groundCheck.position,
-                groundCheckRadius
-            );
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(
-                pontoAtaque != null ? pontoAtaque.position : transform.position,
-                raioAtaque
-            );
-        
-    }
-    public void SetCheckpoint(Transform novoCheckpoint)
-{
-    checkpointAtual = novoCheckpoint;
-     Debug.Log("Checkpoint salvo: " + novoCheckpoint.name);
-}
-    private System.Collections.IEnumerator InvulnerabilidadeTemporaria()
-    {
-        invulneravel = true;
-        yield return new WaitForSeconds(tempoInvulneravel);
-        invulneravel = false;
+            pontoAtaque != null ? pontoAtaque.position : transform.position,
+            raioAtaque
+        );
     }
 }
