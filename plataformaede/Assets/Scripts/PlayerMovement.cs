@@ -26,9 +26,10 @@ public class PlayerMovement : MonoBehaviour
     [Range(0f, 1f)] public float volumePasso = 0.5f;
 
     [Header("Ataque")]
-    public float alcanceAtaque = 1.5f;
+    public Transform pontoAtaque;
+    public float raioAtaque = 0.6f;
+    public int danoAtaque = 1;
     public LayerMask inimigoLayer;
-   // [SerializeField] private int Dano = 3;
 
     [Header("HP")]
     public int maxVida = 3;
@@ -111,6 +112,8 @@ public class PlayerMovement : MonoBehaviour
         
 
         wasGrounded = isGrounded;
+
+        Atacar();
     }
 
     void FixedUpdate()
@@ -125,35 +128,35 @@ public class PlayerMovement : MonoBehaviour
 
     void Atacar()
     {
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            anim.SetTrigger("atacando");
 
-       // if (Input.GetKeyDown(KeyCode.Mouse0))
-       // { audioSource.PlayOneShot(somAtaque, volumeAtaque); }
-       if (Input.GetKeyDown(KeyCode.Mouse0))
-       {
-           anim.SetTrigger("atacando");
+            audioSource.PlayOneShot(
+                somAtaque,
+                volumeAtaque
+            );
+        }
+    }
 
-           audioSource.PlayOneShot(
-               somAtaque,
-               volumeAtaque
-           );
 
-           Collider2D[] inimigos = Physics2D.OverlapCircleAll(
-               transform.position,
-               alcanceAtaque,
-               inimigoLayer
-           );
+    public void AplicarDanoAtaque()
+    {
+        Collider2D[] atingidos = Physics2D.OverlapCircleAll(
+            pontoAtaque.position,
+            raioAtaque,
+            inimigoLayer
+        );
 
-           foreach (Collider2D enemyCollider in inimigos)
-           {
-               EnemyAI enemy =
-                   enemyCollider.GetComponent<EnemyAI>();
+        foreach (Collider2D c in atingidos)
+        {
+            IDanificavel alvo = c.GetComponent<IDanificavel>();
 
-               if (enemy != null)
-               {
-                   enemy.ReceberDano(1);
-               }
-           }
-       }
+            if (alvo != null)
+            {
+                alvo.ReceberDano(danoAtaque);
+            }
+        }
     }
     public void PerderVidaDireto()
     {
@@ -252,9 +255,10 @@ public class PlayerMovement : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(
-            transform.position,
-            alcanceAtaque
-        );
+                pontoAtaque != null ? pontoAtaque.position : transform.position,
+                raioAtaque
+            );
+        
     }
     public void SetCheckpoint(Transform novoCheckpoint)
 {
