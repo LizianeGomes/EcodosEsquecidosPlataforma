@@ -15,17 +15,23 @@ public class PortalFase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (ativado) return;
-        if (!other.CompareTag("Player")) return;
+            if (ativado) return;
 
-        ativado = true;
-        StartCoroutine(TransicaoFase());
+            if (!other.CompareTag("Player")) return;
+
+            ativado = true;
+            StartCoroutine(TransicaoFase());
+        
+
     }
 
     IEnumerator TransicaoFase()
     {
-        yield return StartCoroutine(Fade(0f, 1f));
-        SceneManager.LoadScene(cenaDestino);
+       
+        
+            yield return StartCoroutine(Fade(0f, 1f));
+            SceneManager.LoadScene(cenaDestino);
+        
     }
 
     IEnumerator Fade(float de, float para)

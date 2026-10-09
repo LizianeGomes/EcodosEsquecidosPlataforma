@@ -47,14 +47,21 @@ public class PlataformaMovel : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("[PLAT] ENTER com: " + collision.gameObject.name + " | tag: " + collision.gameObject.tag);
+
         if (!collision.gameObject.CompareTag("Player")) return;
 
         foreach (ContactPoint2D contato in collision.contacts)
         {
-            if (contato.normal.y > 0.5f)
+            Debug.Log("[PLAT] normal.y = " + contato.normal.y);
+
+            if (contato.normal.y < -0.5f)
             {
                 if (collision.rigidbody != null)
+                {
                     playersEmCima.Add(collision.rigidbody);
+                    Debug.Log("[PLAT] ADICIONADO. Total na lista: " + playersEmCima.Count);
+                }
                 break;
             }
         }
@@ -65,7 +72,10 @@ public class PlataformaMovel : MonoBehaviour
         if (!collision.gameObject.CompareTag("Player")) return;
 
         if (collision.rigidbody != null)
+        {
             playersEmCima.Remove(collision.rigidbody);
+            Debug.Log("[PLAT] REMOVIDO. Total na lista: " + playersEmCima.Count);
+        }
     }
 
     void OnDrawGizmos()

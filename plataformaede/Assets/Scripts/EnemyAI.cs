@@ -84,6 +84,18 @@ public class EnemyAI : MonoBehaviour, IDanificavel
         }
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        PlayerMovement player =
+            other.GetComponentInParent<PlayerMovement>();
+
+        if (other.CompareTag("Player"))
+        {
+            player.TomarDano(1);
+            
+        }
+    }
+
     IEnumerator AndarAtePosicaoDeAtaque()
     {
         if (player == null)
@@ -251,10 +263,12 @@ public class EnemyAI : MonoBehaviour, IDanificavel
         if (vidaAtual <= 0)
         {
             Morrer();
+            
         }
+        
     }
 
-    void Morrer()
+     void Morrer()
     {
         if (morto)
             return;
