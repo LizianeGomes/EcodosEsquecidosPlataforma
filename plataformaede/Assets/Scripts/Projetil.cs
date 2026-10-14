@@ -8,7 +8,7 @@ public class Projetil : MonoBehaviour
     [Header("Crescimento")]
     public float escalaInicial = 0.2f;
     public float escalaFinal = 1.5f;
-    public float duracaoCrescimento = 1.5f; // segundos até chegar no tamanho final
+    public float duracaoCrescimento = 1.5f; 
 
     private bool jaAtingiu = false;
     private float tempoCrescimento = 0f;
@@ -16,7 +16,7 @@ public class Projetil : MonoBehaviour
 
     void Start()
     {
-        // guarda pra qual lado o projétil está virado, caso o boss inverta o X
+        
         sinalX = Mathf.Sign(transform.localScale.x);
         AplicarEscala(escalaInicial);
 
@@ -51,7 +51,7 @@ public class Projetil : MonoBehaviour
         {
             jaAtingiu = true;
 
-            player.TomarDano(dano);
+            player.PerderCoracaoNoLocal();
 
             Destroy(gameObject);
         }

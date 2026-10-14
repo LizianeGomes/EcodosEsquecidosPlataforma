@@ -17,7 +17,8 @@ public class EnemyAI : MonoBehaviour, IDanificavel
     public Transform limiteDireito;
 
     [Header("Vida")]
-    public int vidaMaxima = 10;
+    public int vidaMaxima = 5;
+    public VidaUI vidaUI; 
     private int vidaAtual;
 
     [Header("Ataque")]
@@ -26,7 +27,7 @@ public class EnemyAI : MonoBehaviour, IDanificavel
     public int disparosPorRajada = 3;
     public float intervaloEntreDisparos = 0.8f;
     public float cooldownLongo = 3f;
-
+    
     private Animator anim;
     private Rigidbody2D rb;
 
@@ -39,6 +40,8 @@ public class EnemyAI : MonoBehaviour, IDanificavel
     void Start()
     {
         vidaAtual = vidaMaxima;
+        if (vidaUI != null)
+            vidaUI.AtualizarVida(vidaAtual);
 
         anim = visual.GetComponent<Animator>();
 
@@ -48,7 +51,7 @@ public class EnemyAI : MonoBehaviour, IDanificavel
         posicaoY = transform.position.y;
         posicaoZ = transform.position.z;
 
-        // Começa parado olhando para a direita
+        
         DefinirIdleDirecao(true);
 
         StartCoroutine(CicloDeCombate());
@@ -58,26 +61,26 @@ public class EnemyAI : MonoBehaviour, IDanificavel
     {
         while (!morto)
         {
-            // Espera o player entrar no raio de detecção
+            
             while (player == null || DistanciaDoPlayer() > distanciaDeteccao)
             {
                 DefinirIdleDirecao(voltadoDireita);
                 yield return null;
             }
 
-            // Anda até o lado do player
+            
             yield return AndarAtePosicaoDeAtaque();
 
             if (morto)
                 yield break;
 
-            // Rajada de 3 tiros
+            
             yield return DispararRajada();
 
             if (morto)
                 yield break;
 
-            // Fica parado durante o cooldown
+            
             DefinirIdleDirecao(voltadoDireita);
 
             yield return new WaitForSeconds(cooldownLongo);
@@ -103,7 +106,7 @@ public class EnemyAI : MonoBehaviour, IDanificavel
 
         bool playerEstaADireita = player.position.x > transform.position.x;
 
-        // Escolhe o limite correspondente ao lado do player
+       
         float destinoX;
 
         if (playerEstaADireita)
@@ -111,10 +114,10 @@ public class EnemyAI : MonoBehaviour, IDanificavel
         else
             destinoX = limiteEsquerdo.position.x;
 
-        // Define para qual lado o boss está olhando
+        
         DefinirDirecao(playerEstaADireita);
 
-        // Ativa caminhada
+        
         anim.SetBool("Andando", true);
 
         while (!morto)
@@ -139,7 +142,7 @@ public class EnemyAI : MonoBehaviour, IDanificavel
             yield return null;
         }
 
-        // Garante que nunca ultrapasse os limites
+        
         float xSeguro = Mathf.Clamp(
             transform.position.x,
             limiteEsquerdo.position.x,
@@ -152,10 +155,10 @@ public class EnemyAI : MonoBehaviour, IDanificavel
             posicaoZ
         );
 
-        // Para de andar
+        
         anim.SetBool("Andando", false);
 
-        // Quando parar, olha para o player
+        
         if (player != null)
         {
             bool olharDireita = player.position.x > transform.position.x;
@@ -170,12 +173,12 @@ public class EnemyAI : MonoBehaviour, IDanificavel
             if (morto)
                 yield break;
 
-            // Olha para o player antes de cada disparo
+            
             bool olharDireita = player.position.x > transform.position.x;
 
             DefinirDirecao(olharDireita);
 
-            // Ataque normal ou espelhado
+           
             if (olharDireita)
             {
                 anim.SetTrigger("atacando");
@@ -185,7 +188,7 @@ public class EnemyAI : MonoBehaviour, IDanificavel
                 anim.SetTrigger("atacando2");
             }
 
-            // Cria o projétil
+            
             if (projetilPrefab != null && pontoDisparo != null)
             {
                 GameObject projetil = Instantiate(
@@ -212,7 +215,7 @@ public class EnemyAI : MonoBehaviour, IDanificavel
         }
     }
 
-    // Define apenas o lado que o boss está olhando
+    
     void DefinirDirecao(bool direita)
     {
         voltadoDireita = direita;
@@ -223,7 +226,7 @@ public class EnemyAI : MonoBehaviour, IDanificavel
         anim.SetBool("Andando2", !direita);
     }
 
-    // Coloca o boss parado olhando para o lado correto
+    
     void DefinirIdleDirecao(bool direita)
     {
         voltadoDireita = direita;
@@ -249,8 +252,12 @@ public class EnemyAI : MonoBehaviour, IDanificavel
             return;
 
         vidaAtual -= dano;
+        vidaAtual = Mathf.Max(vidaAtual, 0);
 
-        // Dano depende do lado que o boss está olhando
+        if (vidaUI != null)
+            vidaUI.AtualizarVida(vidaAtual);
+
+        
         if (voltadoDireita)
         {
             anim.SetTrigger("tomouDano");
@@ -274,31 +281,36 @@ public class EnemyAI : MonoBehaviour, IDanificavel
             return;
 
         morto = true;
+        if (vidaUI != null)
+            vidaUI.gameObject.SetActive(false); 
+
+        if (ProgressoFase.Instance != null)
+            ProgressoFase.Instance.RegistrarBossDerrotado();
 
         StopAllCoroutines();
 
-        // Desliga estados de movimento
+        
         anim.SetBool("Andando", false);
         anim.SetBool("Andando2", false);
 
-        // Limpa possíveis triggers antigos
+        
         anim.ResetTrigger("atacando");
         anim.ResetTrigger("atacando2");
         anim.ResetTrigger("tomouDano");
         anim.ResetTrigger("tomouDano2");
 
-        // Vai DIRETAMENTE para a morte
+        
         if (voltadoDireita)
             anim.Play("Morte", 0, 0f);
         else
             anim.Play("MorteEspelhada", 0, 0f);
 
-        // Desativa colisão
+        
         Collider2D col = GetComponent<Collider2D>();
 
         if (col != null)
             col.enabled = false;
 
-        // POR ENQUANTO NÃO DESTRUIR
+      
     }
 }

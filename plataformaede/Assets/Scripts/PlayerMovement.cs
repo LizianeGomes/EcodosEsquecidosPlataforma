@@ -14,6 +14,15 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius = 0.15f;
     public LayerMask groundLayer;
+    
+    [Header("Gelo")]
+    public Collider2D colliderGelo;
+    public float aceleracaoNormal = 50f;
+    public float desaceleracaoNormal = 50f;
+    public float aceleracaoGelo = 8f;
+    public float desaceleracaoGelo = 2f;
+
+    private bool noGelo = false;
 
     [Header("Áudio")]
     public AudioClip somPulo;
@@ -56,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool morto = false;
     private bool invulneravel = false;
+    private bool proximoAtaqueEh2 = false;
 
     [SerializeField]
     private float tempoInvulneravel = 1f;
@@ -97,6 +107,24 @@ public class PlayerMovement : MonoBehaviour
             groundCheckRadius,
             groundLayer
         );
+        noGelo = false;
+
+        if (isGrounded && colliderGelo != null)
+        {
+            Collider2D[] chaoAbaixo = Physics2D.OverlapCircleAll(
+                groundCheck.position,
+                groundCheckRadius
+            );
+
+            foreach (Collider2D col in chaoAbaixo)
+            {
+                if (col == colliderGelo)
+                {
+                    noGelo = true;
+                    break;
+                }
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
@@ -122,14 +150,56 @@ public class PlayerMovement : MonoBehaviour
         if (morto)
             return;
 
-        rb.linearVelocity = new Vector2(moveX * speed, rb.linearVelocity.y);
+        float velocidadeAlvo = moveX * speed;
+
+        float aceleracao = noGelo
+            ? aceleracaoGelo
+            : aceleracaoNormal;
+
+        float desaceleracao = noGelo
+            ? desaceleracaoGelo
+            : desaceleracaoNormal;
+
+        float novaVelocidadeX;
+
+        if (moveX != 0)
+        {
+            novaVelocidadeX = Mathf.MoveTowards(
+                rb.linearVelocity.x,
+                velocidadeAlvo,
+                aceleracao * Time.fixedDeltaTime
+            );
+        }
+        else
+        {
+            novaVelocidadeX = Mathf.MoveTowards(
+                rb.linearVelocity.x,
+                0f,
+                desaceleracao * Time.fixedDeltaTime
+            );
+        }
+
+        rb.linearVelocity = new Vector2(
+            novaVelocidadeX,
+            rb.linearVelocity.y
+        );
     }
 
     void Atacar()
     {
+        proximoAtaqueEh2 = !proximoAtaqueEh2;
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            anim.SetTrigger("atacando");
+            if (proximoAtaqueEh2)
+            {
+                anim.ResetTrigger("atacando");
+                anim.SetTrigger("atacando2");
+            }
+            else
+            {
+                anim.ResetTrigger("atacando2");
+                anim.SetTrigger("atacando");
+            }
             audioSource.PlayOneShot(somAtaque, volumeAtaque);
         }
     }
@@ -159,6 +229,26 @@ public class PlayerMovement : MonoBehaviour
             return;
 
         Morrer();
+    }
+    public void PerderCoracaoNoLocal()
+    {
+        if (morto) return;
+
+        vidasRestantes--;
+
+        if (vidaUI != null)
+            vidaUI.AtualizarVida(vidasRestantes);
+
+       
+        if (vidasRestantes <= 0)
+        {
+            morto = true;
+            rb.linearVelocity = Vector2.zero;
+            rb.simulated = false;
+
+            if (GameOverManager.Instance != null)
+                GameOverManager.Instance.MostrarGameOver();
+        }
     }
 
     public void TomarDano(int dano)
