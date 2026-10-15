@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius = 0.15f;
     public LayerMask groundLayer;
+    private bool estavaNoChao;
     
     [Header("Gelo")]
     public Collider2D colliderGelo;
@@ -84,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        anim.SetBool("pulo", !isGrounded);
+        
 
         if (morto)
             return;
@@ -107,6 +108,25 @@ public class PlayerMovement : MonoBehaviour
             groundCheckRadius,
             groundLayer
         );
+
+        // ----- Animações de pulo / queda / impacto -----
+        float velocidadeY = rb.linearVelocity.y;
+
+        bool estaSubindo = !isGrounded && velocidadeY > 0.05f;
+        bool estaDescendo = !isGrounded && velocidadeY < -0.05f;
+
+        anim.SetBool("pulo", estaSubindo);
+        anim.SetBool("aterrissando", estaDescendo);
+
+        if (isGrounded && !estavaNoChao)
+        {
+            anim.ResetTrigger("impacto");
+            anim.SetTrigger("impacto");
+        }
+
+        estavaNoChao = isGrounded;
+
+        // ----- Gelo (igual ao original) -----
         noGelo = false;
 
         if (isGrounded && colliderGelo != null)
@@ -124,6 +144,7 @@ public class PlayerMovement : MonoBehaviour
                     break;
                 }
             }
+        
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
@@ -133,12 +154,12 @@ public class PlayerMovement : MonoBehaviour
                 jumpForce
             );
 
-            anim.SetBool("pulo", true);
+            
 
             audioSource.PlayOneShot(somPulo, volumePulo);
         }
 
-        anim.SetBool("pulo", !isGrounded);
+        
 
         wasGrounded = isGrounded;
 
