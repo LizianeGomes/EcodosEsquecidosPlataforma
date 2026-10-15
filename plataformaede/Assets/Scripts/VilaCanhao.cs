@@ -80,41 +80,55 @@ public class VilãCanhao : MonoBehaviour
             Quaternion.identity
         );
 
-        
-        Vector2 posicaoJogador = jogador.position;
-
-        Vector2 variacaoAleatoria =
-            Random.insideUnitCircle * erroMira;
-
-        Vector2 destino = posicaoJogador + variacaoAleatoria;
-
-        
-        Vector2 diferenca = destino - posicaoJogador;
-
-        if (diferenca.magnitude > distanciaMaximaMira)
-        {
-            destino = posicaoJogador +
-                diferenca.normalized * distanciaMaximaMira;
-        }
-
-        
-        Vector2 direcao =
-            ((Vector2)destino -
-            (Vector2)pontoDisparo.position).normalized;
-
         BolaCanhao projetil = bola.GetComponent<BolaCanhao>();
+        Rigidbody2D rbBola = bola.GetComponent<Rigidbody2D>();
 
-        if (projetil != null)
-        {
-            projetil.Lancar(direcao, velocidadeBola);
-        }
-        else
+        if (projetil == null || rbBola == null)
         {
             Debug.LogError(
-                "O prefab da bola precisa ter o script BolaCanhao!"
+                "O prefab da bola precisa ter BolaCanhao e Rigidbody2D!"
             );
 
             Destroy(bola);
+            return;
         }
+
+        // garante física de verdade
+        rbBola.bodyType = RigidbodyType2D.Dynamic;
+
+        if (rbBola.gravityScale <= 0f)
+            rbBola.gravityScale = 1f;
+
+        // alvo com erro de mira (igual ao seu)
+        Vector2 posicaoJogador = jogador.position;
+
+        Vector2 variacao = Random.insideUnitCircle * erroMira;
+
+        if (variacao.magnitude > distanciaMaximaMira)
+            variacao = variacao.normalized * distanciaMaximaMira;
+
+        Vector2 destino = posicaoJogador + variacao;
+
+        // velocidade inicial pra descrever um arco até o destino
+        Vector2 origem = pontoDisparo.position;
+        Vector2 delta = destino - origem;
+
+        float g = Physics2D.gravity.y * rbBola.gravityScale; // negativo
+
+        float tempoVoo = Mathf.Clamp(
+            delta.magnitude / velocidadeBola,
+            0.4f,
+            2.5f
+        );
+
+        Vector2 velocidadeInicial = new Vector2(
+            delta.x / tempoVoo,
+            delta.y / tempoVoo - 0.5f * g * tempoVoo
+        );
+
+        projetil.Lancar(
+            velocidadeInicial.normalized,
+            velocidadeInicial.magnitude
+        );
     }
 }
