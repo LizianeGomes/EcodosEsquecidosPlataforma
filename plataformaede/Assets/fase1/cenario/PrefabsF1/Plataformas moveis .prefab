@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 6922951685164040683}
   - component: {fileID: 1444203445836040798}
   - component: {fileID: 2775798965743954193}
+  - component: {fileID: 2972156171314739456}
   m_Layer: 6
   m_Name: platmovel
   m_TagString: Untagged
@@ -60,8 +61,8 @@ Transform:
   m_GameObject: {fileID: 1863442179132966868}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0827, y: -0.2767, z: 0}
-  m_LocalScale: {x: 0.695704, y: 0.46415302, z: 1}
+  m_LocalPosition: {x: 0.0827, y: -0.1167, z: 0}
+  m_LocalScale: {x: 0.695704, y: 0.6007997, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6360499277267988704}
@@ -157,10 +158,10 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.02420485, y: 0.09812379}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -170,7 +171,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4, y: 3}
+  m_Size: {x: 4.920027, y: 1.9066224}
   m_EdgeRadius: 0
 --- !u!50 &1444203445836040798
 Rigidbody2D:
@@ -213,7 +214,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlataformaMovel
   pontoA: {fileID: 7184649470601077869}
   pontoB: {fileID: 7217235909924640374}
-  velocidade: 2
+  velocidade: 2.5
+--- !u!251 &2972156171314739456
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863442179132966868}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &2009692360534971541
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +292,7 @@ Transform:
   m_GameObject: {fileID: 3706663404077436584}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 63.77, y: -1.32, z: 0}
+  m_LocalPosition: {x: 204.60944, y: 31.674835, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -126,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
 
         estavaNoChao = isGrounded;
 
-        // ----- Gelo (igual ao original) -----
+        
         noGelo = false;
 
         if (isGrounded && colliderGelo != null)
@@ -209,7 +209,7 @@ public class PlayerMovement : MonoBehaviour
     void Atacar()
     {
         proximoAtaqueEh2 = !proximoAtaqueEh2;
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             if (proximoAtaqueEh2)
             {
