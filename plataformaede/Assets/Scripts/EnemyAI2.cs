@@ -23,8 +23,6 @@ public class EnemyAI2 : MonoBehaviour
     {
         bool bateuParede = Physics2D.OverlapCircle(checkParede.position, raioCheck, groundLayer);
         bool temChaoNaFrente = Physics2D.OverlapCircle(checkChao.position, raioCheck, groundLayer);
-
-        // Vira se bater numa parede OU se não tiver chão na frente (evita cair de plataformas)
         if (bateuParede || !temChaoNaFrente)
         {
             Virar();
@@ -39,7 +37,6 @@ public class EnemyAI2 : MonoBehaviour
 
     void Virar()
     {
-        Debug.Log("Virou! Frame: " + Time.frameCount);
         indoDireita = !indoDireita;
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
