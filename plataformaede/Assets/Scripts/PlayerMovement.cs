@@ -50,6 +50,10 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Respawn")]
     public Transform respawnPoint;
+    
+    [Header("Animações de dano e morte")]
+    [SerializeField] private float tempoAnimacaoDano = 0.5f;
+    [SerializeField] private float tempoAnimacaoMorte = 1.5f;
 
     [Header("UI")]
     public VidaUI vidaUI;
@@ -253,23 +257,10 @@ public class PlayerMovement : MonoBehaviour
     }
     public void PerderCoracaoNoLocal()
     {
-        if (morto) return;
+        if (morto || invulneravel)
+            return;
 
-        vidasRestantes--;
-
-        if (vidaUI != null)
-            vidaUI.AtualizarVida(vidasRestantes);
-
-       
-        if (vidasRestantes <= 0)
-        {
-            morto = true;
-            rb.linearVelocity = Vector2.zero;
-            rb.simulated = false;
-
-            if (GameOverManager.Instance != null)
-                GameOverManager.Instance.MostrarGameOver();
-        }
+        Morrer();
     }
 
     public void TomarDano(int dano)
@@ -277,37 +268,77 @@ public class PlayerMovement : MonoBehaviour
         if (morto || invulneravel)
             return;
 
+        StartCoroutine(ProcessarDano(dano));
+    }
+
+    private System.Collections.IEnumerator ProcessarDano(int dano)
+    {
+        // Impede que outro golpe seja recebido imediatamente.
+        invulneravel = true;
+
+        // Aplica o dano uma única vez.
         vidaAtual -= dano;
 
-        Debug.Log("PROJÉTIL ACERTOU! HP restante: " + vidaAtual);
+        Debug.Log("HP restante: " + vidaAtual);
 
+        // Inicia a animação de dano.
+        
+        anim.SetTrigger("TomouDano");
+
+        // Aguarda a animação terminar.
+        yield return new WaitForSeconds(tempoAnimacaoDano);
+
+        // Se o HP acabou, perde um coração ou morre definitivamente.
         if (vidaAtual <= 0)
         {
             Morrer();
+            yield break;
         }
-    }
 
+        // Se sobreviveu ao golpe, pode voltar a receber dano.
+        invulneravel = false;
+    }
     void Morrer()
     {
-        morto = true;
-
+        // Perde um coração.
         vidasRestantes--;
-
-        Debug.Log("VIDA PERDIDA! Vidas restantes: " + vidasRestantes);
 
         if (vidaUI != null)
             vidaUI.AtualizarVida(vidasRestantes);
 
-        if (vidasRestantes <= 0)
+        // Se ainda restam corações, volta ao checkpoint.
+        if (vidasRestantes > 0)
         {
-            rb.linearVelocity = Vector2.zero;
-            rb.simulated = false;
-
-            GameOverManager.Instance.MostrarGameOver();
+            Respawn();
             return;
         }
 
-        Respawn();
+        // Só chega aqui quando perde o último coração.
+        morto = true;
+        invulneravel = true;
+
+        rb.linearVelocity = Vector2.zero;
+
+        // Inicia a animação de morte definitiva.
+        
+        
+        anim.SetTrigger("Morte");
+
+        // O Game Over só aparece depois da animação.
+        StartCoroutine(GameOverAposAnimacao());
+    }
+
+    private System.Collections.IEnumerator GameOverAposAnimacao()
+    {
+        yield return new WaitForSeconds(tempoAnimacaoMorte);
+
+        rb.linearVelocity = Vector2.zero;
+        rb.simulated = false;
+
+        if (GameOverManager.Instance != null)
+        {
+            GameOverManager.Instance.MostrarGameOver();
+        }
     }
 
     void Respawn()

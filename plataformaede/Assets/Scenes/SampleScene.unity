@@ -2953,7 +2953,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.809998, y: 3.369999, z: -10}
+  m_LocalPosition: {x: -9.81, y: 3.1790001, z: -10}
   m_LocalScale: {x: 1.3, y: 1.77, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4464,7 +4464,7 @@ Transform:
   m_GameObject: {fileID: 767413980}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.81, y: 3.3700001, z: -10}
+  m_LocalPosition: {x: -9.81, y: 3.1790001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -66525,6 +66525,8 @@ MonoBehaviour:
   maxVida: 1
   vidasRestantes: 3
   respawnPoint: {fileID: 1505578114}
+  tempoAnimacaoDano: 0.5
+  tempoAnimacaoMorte: 1.5
   vidaUI: {fileID: 582574035}
   checkpointAtual: {fileID: 0}
   tempoInvulneravel: 0
@@ -67901,7 +67903,7 @@ Transform:
   m_GameObject: {fileID: 801640048404037078}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.3, y: -0.8, z: 0}
+  m_LocalPosition: {x: -9.3, y: -0.991, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
