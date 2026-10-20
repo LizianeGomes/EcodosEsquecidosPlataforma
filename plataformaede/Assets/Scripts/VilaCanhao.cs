@@ -27,13 +27,23 @@ public class VilãCanhao : MonoBehaviour
     [Header("Detecção do jogador")]
     public float distanciaDeteccao = 8f;
     public float distanciaMaximaDisparo = 6f;
+    
+    [Header("Vida da Vilã")]
+    public int vidaMaxima = 8;
+    public int vidaAtual = 8;
+
+    [Header("Corações")]
+    public UnityEngine.UI.Image[] coracoes;
 
     private void Start()
     {
+        vidaAtual = vidaMaxima;
+        AtualizarCoracoes();
         if (anim == null)
             anim = GetComponent<Animator>();
 
         StartCoroutine(CicloAtaque());
+        
     }
 
     private IEnumerator CicloAtaque()
@@ -155,5 +165,31 @@ public class VilãCanhao : MonoBehaviour
             velocidadeInicial.normalized,
             velocidadeInicial.magnitude
         );
+    }
+    public void TomarDano(int dano)
+    {
+        if (vidaAtual <= 0)
+            return;
+
+        vidaAtual -= dano;
+        vidaAtual = Mathf.Max(0, vidaAtual);
+
+        AtualizarCoracoes();
+
+        if (vidaAtual <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void AtualizarCoracoes()
+    {
+        for (int i = 0; i < coracoes.Length; i++)
+        {
+            if (coracoes[i] != null)
+            {
+                coracoes[i].enabled = i < vidaAtual;
+            }
+        }
     }
 }
