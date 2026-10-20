@@ -27665,10 +27665,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniInimigo2
   player: {fileID: 5053428373397056008}
-  "distanciaDetec\xE7\xE3o": 8
-  "for\xE7aHorizontal": 3
-  "for\xE7aVertical": 3
-  intervalo: 3
+  "distanciaDetec\xE7\xE3o": 9.7
+  "for\xE7aHorizontal": 1.6
+  "for\xE7aVertical": 4.6
+  intervalo: 1.03
 --- !u!58 &1205267136
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -27796,7 +27796,7 @@ Transform:
   m_GameObject: {fileID: 1205267134}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11, y: 3.7, z: 0}
+  m_LocalPosition: {x: 11.52, y: 1.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27828,7 +27828,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1001 &1205446929
 PrefabInstance:
   m_ObjectHideFlags: 0

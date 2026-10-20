@@ -15,9 +15,12 @@ public class MiniInimigo2 : MonoBehaviour
     private Rigidbody2D rb;
     private float cronometroPulo;
     private bool estaNoChao = true;
+    private Animator anim;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        
     }
 
     
@@ -25,10 +28,12 @@ public class MiniInimigo2 : MonoBehaviour
     {
         if (player == null) return;
         
+        
         float distancia = Vector2.Distance(player.position, transform.position);
 
         if (estaNoChao && distancia <= distanciaDetecção)
         {
+            anim.Play("Caminhada");
             cronometroPulo += Time.deltaTime;
 
             if (cronometroPulo >= intervalo)
@@ -41,10 +46,18 @@ public class MiniInimigo2 : MonoBehaviour
 
     void PularNoPlayer()
     {
-        float direcaoHorizontal = Mathf.Sign(player.position.x - transform.position.x);
-        Vector3 forcaPulo = new Vector3(direcaoHorizontal * forçaHorizontal, forçaVertical, 0f);
-        
-        
+        float direcaoHorizontal = Mathf.Sign(
+            player.position.x - transform.position.x
+        );
+
+        Vector2 forcaPulo = new Vector2(
+            direcaoHorizontal * forçaHorizontal,
+            forçaVertical
+        );
+
+        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        rb.AddForce(forcaPulo, ForceMode2D.Impulse);
+
         estaNoChao = false;
     }
 
