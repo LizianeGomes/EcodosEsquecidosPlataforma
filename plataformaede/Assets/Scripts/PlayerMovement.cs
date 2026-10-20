@@ -1,3 +1,4 @@
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movimento")]
     public float speed = 5f;
+    public float velocidadeNoGelo = 3f;
     public float jumpForce = 12f;
 
     [Header("Chão")]
@@ -103,6 +105,7 @@ public class PlayerMovement : MonoBehaviour
         else if (moveX < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
+            
         }
 
         anim.SetBool("Andando", moveX != 0);
@@ -175,7 +178,11 @@ public class PlayerMovement : MonoBehaviour
         if (morto)
             return;
 
-        float velocidadeAlvo = moveX * speed;
+        float velocidadeAtual = noGelo
+            ? velocidadeNoGelo
+            : speed;
+
+        float velocidadeAlvo = moveX * velocidadeAtual;
 
         float aceleracao = noGelo
             ? aceleracaoGelo

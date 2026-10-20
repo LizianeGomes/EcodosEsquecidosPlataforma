@@ -23,6 +23,10 @@ public class VilãCanhao : MonoBehaviour
 
     [Header("Estado")]
     public bool atacar = true;
+    
+    [Header("Detecção do jogador")]
+    public float distanciaDeteccao = 8f;
+    public float distanciaMaximaDisparo = 6f;
 
     private void Start()
     {
@@ -36,23 +40,37 @@ public class VilãCanhao : MonoBehaviour
     {
         while (true)
         {
-            if (atacar && jogador != null &&
-                pontoDisparo != null && prefabBola != null)
+            bool jogadorDetectado =
+                jogador != null &&
+                Vector2.Distance(transform.position, jogador.position)
+                <= distanciaDeteccao;
+
+            if (atacar &&
+                jogadorDetectado &&
+                pontoDisparo != null &&
+                prefabBola != null)
             {
-                
                 if (anim != null)
                     anim.SetTrigger("Atacar");
 
-                
                 yield return new WaitForSeconds(
                     tempoAntesDoPrimeiroTiro
                 );
 
-                
                 for (int i = 0; i < bolasPorSalva; i++)
                 {
                     if (!atacar)
                         break;
+
+                    // Se o jogador sair do alcance, interrompe a salva.
+                    if (jogador == null ||
+                        Vector2.Distance(
+                            transform.position,
+                            jogador.position
+                        ) > distanciaDeteccao)
+                    {
+                        break;
+                    }
 
                     DispararBola();
 
@@ -65,7 +83,6 @@ public class VilãCanhao : MonoBehaviour
                 }
             }
 
-            
             yield return new WaitForSeconds(
                 Mathf.Max(0.1f, cooldown)
             );
@@ -108,10 +125,18 @@ public class VilãCanhao : MonoBehaviour
             variacao = variacao.normalized * distanciaMaximaMira;
 
         Vector2 destino = posicaoJogador + variacao;
-
-        // velocidade inicial pra descrever um arco até o destino
+        
         Vector2 origem = pontoDisparo.position;
         Vector2 delta = destino - origem;
+
+
+        if (delta.magnitude > distanciaMaximaDisparo)
+        {
+            destino = origem +
+                      delta.normalized * distanciaMaximaDisparo;
+
+            delta = destino - origem;
+        }
 
         float g = Physics2D.gravity.y * rbBola.gravityScale; // negativo
 
