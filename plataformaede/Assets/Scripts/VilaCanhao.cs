@@ -168,6 +168,7 @@ public class VilãCanhao : MonoBehaviour
     }
     public void TomarDano(int dano)
     {
+        Debug.Log("Vilã recebeu dano!");
         if (vidaAtual <= 0)
             return;
 
@@ -192,4 +193,29 @@ public class VilãCanhao : MonoBehaviour
             }
         }
     }
+    
+    [Header("Collider da Vilã")]
+    public Transform colliderAlvo;
+    public Vector2 posicaoColliderCooldown;
+
+    
+    public void MudarPosicaoCollider()
+    {
+        Debug.Log("EVENTO DO COLLIDER FOI CHAMADO!");
+
+        if (colliderAlvo == null)
+        {
+            Debug.LogError("Collider Alvo não foi atribuído no Inspector!");
+            return;
+        }
+
+        Debug.Log("Objeto alterado: " + colliderAlvo.name);
+        Debug.Log("Posição local antes: " + colliderAlvo.localPosition);
+
+        colliderAlvo.localPosition = posicaoColliderCooldown;
+
+        Debug.Log("Posição local depois: " + colliderAlvo.localPosition);
+    }
+
+
 }

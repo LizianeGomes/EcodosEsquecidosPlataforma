@@ -91,8 +91,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        
-
         if (morto)
             return;
 
@@ -236,17 +234,41 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+   
     public void AplicarDanoAtaque()
     {
+        if (pontoAtaque == null)
+        {
+            Debug.LogWarning("Ponto de ataque não foi configurado!");
+            return;
+        }
+
         Collider2D[] atingidos = Physics2D.OverlapCircleAll(
             pontoAtaque.position,
             raioAtaque,
             Enemy
         );
 
+        Debug.Log("Ataque executado. Alvos encontrados: " + atingidos.Length);
+
         foreach (Collider2D c in atingidos)
         {
-            IDanificavel alvo = c.GetComponentInParent<IDanificavel>();
+            Debug.Log("Alvo atingido: " + c.name);
+
+            // Verifica se o alvo é a vilã do canhão.
+            VilãCanhao vidaVilã =
+                c.GetComponentInParent<VilãCanhao>();
+
+            if (vidaVilã != null)
+            {
+                Debug.Log("Vilã encontrada! Aplicando dano.");
+                vidaVilã.TomarDano(danoAtaque);
+                continue;
+            }
+
+            // Mantém o sistema de dano dos outros inimigos.
+            IDanificavel alvo =
+                c.GetComponentInParent<IDanificavel>();
 
             if (alvo != null)
             {
@@ -254,6 +276,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
 
     public void PerderVidaDireto()
     {

@@ -1171,6 +1171,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &165751582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 165751583}
+  - component: {fileID: 165751584}
+  m_Layer: 8
+  m_Name: collidervila
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &165751583
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165751582}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.26, y: 0.02, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1533837710}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &165751584
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165751582}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 5.941597, y: -0.5734525}
+  m_Size: {x: 1.2646027, y: 3.829217}
+  m_Direction: 0
 --- !u!4 &209303344 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8937640988141104438, guid: fc0abd3472df90a4aaefad069c2fe0da, type: 3}
@@ -1947,7 +2016,7 @@ GameObject:
   - component: {fileID: 470044304}
   - component: {fileID: 470044303}
   - component: {fileID: 470044302}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: "VidaVil\xE3"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2178,7 +2247,7 @@ GameObject:
   - component: {fileID: 483846348}
   - component: {fileID: 483846349}
   - component: {fileID: 483846350}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2645,7 +2714,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.08, y: 3.45, z: -10}
+  m_LocalPosition: {x: -22.63, y: 3.2600002, z: -10}
   m_LocalScale: {x: 1.3, y: 1.77, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4471,7 +4540,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 693956808}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PontoDisparo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4603,7 +4672,7 @@ GameObject:
   - component: {fileID: 727618628}
   - component: {fileID: 727618629}
   - component: {fileID: 727618630}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4841,7 +4910,7 @@ Transform:
   m_GameObject: {fileID: 767413980}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.08, y: 3.45, z: -10}
+  m_LocalPosition: {x: -22.63, y: 3.26, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27962,7 +28031,7 @@ GameObject:
   - component: {fileID: 1131778155}
   - component: {fileID: 1131778156}
   - component: {fileID: 1131778157}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28454,6 +28523,7 @@ MonoBehaviour:
   limiteEsquerda: {fileID: 0}
   limiteDireita: {fileID: 0}
   nomeEstadoPulo: Caminhada
+  nomeEstadoMorte: mortee
 --- !u!58 &1205267136
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -28563,7 +28633,7 @@ SpriteRenderer:
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 1b69f64ad4d4be74f8ba97c120671d32, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.31, y: 2.175}
@@ -28581,7 +28651,7 @@ Transform:
   m_GameObject: {fileID: 1205267134}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.16, y: 11.08, z: 0}
+  m_LocalPosition: {x: -2.93, y: 1.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29086,7 +29156,7 @@ GameObject:
   - component: {fileID: 1310639153}
   - component: {fileID: 1310639154}
   - component: {fileID: 1310639155}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30077,7 +30147,7 @@ GameObject:
   - component: {fileID: 1454413141}
   - component: {fileID: 1454413142}
   - component: {fileID: 1454413143}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30273,7 +30343,7 @@ GameObject:
   - component: {fileID: 1519163991}
   - component: {fileID: 1519163992}
   - component: {fileID: 1519163993}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30349,7 +30419,7 @@ GameObject:
   - component: {fileID: 1533837709}
   - component: {fileID: 1533837708}
   - component: {fileID: 1533837707}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Madame Mustycream
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30372,7 +30442,7 @@ MonoBehaviour:
   pontoDisparo: {fileID: 693956808}
   prefabBola: {fileID: 8937169169992462288, guid: c02cf5aa6971c8349ba0c78739387ff4, type: 3}
   anim: {fileID: 1533837708}
-  cooldown: 1.65
+  cooldown: 10
   bolasPorSalva: 3
   intervaloEntreBolas: 0.58
   tempoAntesDoPrimeiroTiro: 0.3
@@ -30393,6 +30463,8 @@ MonoBehaviour:
   - {fileID: 727618630}
   - {fileID: 1519163993}
   - {fileID: 1876462285}
+  colliderAlvo: {fileID: 165751583}
+  posicaoColliderCooldown: {x: -6.78, y: 0.02}
 --- !u!95 &1533837708
 Animator:
   serializedVersion: 7
@@ -30490,6 +30562,7 @@ Transform:
   m_Children:
   - {fileID: 693956808}
   - {fileID: 470044301}
+  - {fileID: 165751583}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1543336767 stripped
@@ -36910,8 +36983,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
-  m_sharedMaterial: {fileID: -4594678117042292487, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -37056,7 +37129,7 @@ GameObject:
   - component: {fileID: 1876462287}
   - component: {fileID: 1876462286}
   - component: {fileID: 1876462285}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42205,7 +42278,7 @@ GameObject:
   - component: {fileID: 2106981285}
   - component: {fileID: 2106981286}
   - component: {fileID: 2106981287}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42749,7 +42822,7 @@ Transform:
   m_GameObject: {fileID: 2713139467238661648}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.08, y: 0, z: 0}
+  m_LocalPosition: {x: -22.63, y: -0.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
