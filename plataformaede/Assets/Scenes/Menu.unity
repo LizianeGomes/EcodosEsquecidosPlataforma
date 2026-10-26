@@ -763,8 +763,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Creditos
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
-  m_sharedMaterial: {fileID: -4594678117042292487, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
+  m_sharedMaterial: {fileID: 3414334478140397189, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1442,8 +1442,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Sair
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
-  m_sharedMaterial: {fileID: -4594678117042292487, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
+  m_sharedMaterial: {fileID: 3414334478140397189, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1579,8 +1579,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Jogar
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
-  m_sharedMaterial: {fileID: -4594678117042292487, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
+  m_sharedMaterial: {fileID: 3414334478140397189, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

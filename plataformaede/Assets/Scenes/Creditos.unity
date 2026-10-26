@@ -179,8 +179,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ORIENTACAO
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
-  m_sharedMaterial: {fileID: -4594678117042292487, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
+  m_sharedMaterial: {fileID: 3414334478140397189, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -316,8 +316,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Lorenna Cristina S. de Oliveira
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
-  m_sharedMaterial: {fileID: -4594678117042292487, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
+  m_sharedMaterial: {fileID: 3414334478140397189, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -454,8 +454,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PROGRAMACAO
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
-  m_sharedMaterial: {fileID: -4594678117042292487, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
+  m_sharedMaterial: {fileID: 3414334478140397189, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -700,8 +700,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Liziane Gomes Ribeiro
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
-  m_sharedMaterial: {fileID: -4594678117042292487, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
+  m_sharedMaterial: {fileID: 3414334478140397189, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1054,8 +1054,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ARTE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
-  m_sharedMaterial: {fileID: -4594678117042292487, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
+  m_sharedMaterial: {fileID: 3414334478140397189, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1266,8 +1266,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Marcio Mageski Marques '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
-  m_sharedMaterial: {fileID: -4594678117042292487, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
+  m_sharedMaterial: {fileID: 3414334478140397189, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1403,8 +1403,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Voltar
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
-  m_sharedMaterial: {fileID: -4594678117042292487, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
+  m_sharedMaterial: {fileID: 3414334478140397189, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1540,8 +1540,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: creditos
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
-  m_sharedMaterial: {fileID: -4594678117042292487, guid: f09b7212a8b217d4483f75623acfe679, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
+  m_sharedMaterial: {fileID: 3414334478140397189, guid: 433667bae64c76b4298d38aea140b23d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
