@@ -165,3 +165,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdfab0f42f528a341962f41eb0612aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Moeda
+  somColeta: {fileID: 8300000, guid: feff70def8a20e743ba9c5aa991448b0, type: 3}
+  volumeColeta: 0.4

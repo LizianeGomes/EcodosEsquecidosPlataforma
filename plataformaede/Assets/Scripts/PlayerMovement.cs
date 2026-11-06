@@ -49,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Vidas")]
     public int vidasRestantes = 3;
+    public int vidasMaximas = 3;
 
     [Header("Respawn")]
     public Transform respawnPoint;
@@ -276,7 +277,19 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+// Retorna true se a vida foi realmente ganha
+    public bool GanharVida()
+    {
+        if (morto || vidasRestantes >= vidasMaximas)
+            return false;
 
+        vidasRestantes++;
+
+        if (vidaUI != null)
+            vidaUI.AtualizarVida(vidasRestantes);
+
+        return true;
+    }
 
     public void PerderVidaDireto()
     {
