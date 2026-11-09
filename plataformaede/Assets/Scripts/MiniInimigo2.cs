@@ -23,6 +23,10 @@ public class MiniInimigo2 : MonoBehaviour
     [SerializeField] private string nomeEstadoPulo = "Caminhada";
     [SerializeField] private string nomeEstadoMorte = "morte";
 
+    [Header("Áudio")]
+    [SerializeField] private AudioClip somMorte;
+    [SerializeField] [Range(0f, 1f)] private float volumeMorte = 0.7f;
+    
     [Header("Pisão do Jogador")]
     [SerializeField] private float forçaImpulsoJogador = 10f;
     [SerializeField] private float alturaMinimaPisão = 0.1f;
@@ -255,6 +259,8 @@ public class MiniInimigo2 : MonoBehaviour
             return;
 
         morreu = true;
+        if (somMorte != null && Camera.main != null)
+            AudioSource.PlayClipAtPoint(somMorte, Camera.main.transform.position, volumeMorte);
 
         // Interrompe o comportamento de pulo.
         StopAllCoroutines();

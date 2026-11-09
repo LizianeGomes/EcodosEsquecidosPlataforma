@@ -239,6 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8991abe11954d74ba1d2cc435a704fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InimigoController
+  somMorte: {fileID: 8300000, guid: a9d984c1b0f1f594db60468fa6b77230, type: 3}
+  volumeMorte: 1
 --- !u!61 &1863094876914794912
 BoxCollider2D:
   m_ObjectHideFlags: 0

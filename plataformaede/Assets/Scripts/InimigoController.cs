@@ -6,10 +6,15 @@ public class InimigoController : MonoBehaviour
     private bool morto = false;
     private Animator anim;
 
-    
+    [Header("Som de morte")]
+    [SerializeField] private AudioClip somMorte;
+    [Range(0f, 1f)]
+    [SerializeField] private float volumeMorte = 0.7f;
+
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
+
         Debug.Log("Animator encontrado em: " + anim.gameObject.name +
                   " | controller: " + anim.runtimeAnimatorController);
     }
@@ -17,19 +22,38 @@ public class InimigoController : MonoBehaviour
     public void MorrerPisado()
     {
         Debug.Log("MorrerPisado chamado");
+
         if (morto) return;
 
         morto = true;
 
-        // Desativa colisores e movimento
-        GetComponent<EnemyAI2>().enabled = false;
+        // Reproduz o som apenas uma vez, ao morrer.
+        if (somMorte != null)
+        {
+            AudioSource.PlayClipAtPoint(
+                somMorte,
+                transform.position,
+                volumeMorte
+            );
+        }
+
+        // Desativa colisores e movimento.
+        EnemyAI2 inimigo = GetComponent<EnemyAI2>();
+        if (inimigo != null)
+            inimigo.enabled = false;
 
         Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
+
         foreach (Collider2D col in colliders)
             col.enabled = false;
 
-        GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
-        GetComponent<Rigidbody2D>().simulated = false;
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.simulated = false;
+        }
 
         anim.SetTrigger("morto");
 
@@ -38,7 +62,7 @@ public class InimigoController : MonoBehaviour
 
     IEnumerator DestruirAposAnimacao()
     {
-        yield return new WaitForSeconds(1f); // ajuste pro tempo real da sua animação de morte
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 
@@ -49,6 +73,7 @@ public class InimigoController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerMovement player = other.GetComponent<PlayerMovement>();
+
             if (player != null)
                 player.PerderVidaDireto();
         }

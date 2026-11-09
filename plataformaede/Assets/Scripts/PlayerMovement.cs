@@ -218,9 +218,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Atacar()
     {
-        proximoAtaqueEh2 = !proximoAtaqueEh2;
         if (Input.GetKeyDown(KeyCode.Z))
         {
+            proximoAtaqueEh2 = !proximoAtaqueEh2;
+
             if (proximoAtaqueEh2)
             {
                 anim.ResetTrigger("atacando");
@@ -231,7 +232,12 @@ public class PlayerMovement : MonoBehaviour
                 anim.ResetTrigger("atacando2");
                 anim.SetTrigger("atacando");
             }
-            audioSource.PlayOneShot(somAtaque, volumeAtaque);
+
+            // Som da espada
+            if (somAtaque != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(somAtaque, volumeAtaque);
+            }
         }
     }
 

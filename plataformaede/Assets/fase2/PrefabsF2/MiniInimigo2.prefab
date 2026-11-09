@@ -175,6 +175,8 @@ MonoBehaviour:
   limiteDireita: {fileID: 0}
   nomeEstadoPulo: Caminhada
   nomeEstadoMorte: mortee
+  somMorte: {fileID: 8300000, guid: 8ec9e91fc33b17140ae00631bb52df1c, type: 3}
+  volumeMorte: 0.1
   "for\xE7aImpulsoJogador": 10
   "alturaMinimaPis\xE3o": 0.1
   tempoAnimacaoMorte: 1

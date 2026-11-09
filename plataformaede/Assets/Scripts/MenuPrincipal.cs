@@ -6,7 +6,6 @@ public class MenuPrincipal : MonoBehaviour
     
     public void Jogar()
     {
-        Debug.Log("BOTAO JOGAR FUNCIONOU!");
-        fade.CarregarCena("SampleScene");
+        fade.CarregarCena("Cutscene");
     }
 }

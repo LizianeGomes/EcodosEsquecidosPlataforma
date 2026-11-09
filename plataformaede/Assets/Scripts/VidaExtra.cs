@@ -3,7 +3,7 @@ using UnityEngine;
 public class VidaExtra : MonoBehaviour
 {
     [SerializeField] private AudioClip somColeta; // opcional
-    [SerializeField] [Range(0f, 1f)] private float volume = 0.7f;
+    [SerializeField] [Range(0f, 10f)] private float volume = 0.7f;
 
     private bool coletada;
 
