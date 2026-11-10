@@ -8,8 +8,8 @@ public class InimigoController : MonoBehaviour
 
     [Header("Som de morte")]
     [SerializeField] private AudioClip somMorte;
-    [Range(0f, 1f)]
-    [SerializeField] private float volumeMorte = 0.7f;
+    [Range(0f, 10f)]
+    [SerializeField] private float volumeMorte = 1f;
 
     void Start()
     {
