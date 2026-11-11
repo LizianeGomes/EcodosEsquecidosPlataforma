@@ -1,7 +1,7 @@
-
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(AudioSource))]
 public class VilãCanhao : MonoBehaviour
@@ -22,11 +22,21 @@ public class VilãCanhao : MonoBehaviour
     [Header("Detecção do jogador")]
     public float distanciaDeteccao = 8f;
 
-    [Header("Mira")]
+    [Header("Mira e locais de queda")]
     public float velocidadeBomba = 7f;
-    public float erroMira = 1f;
-    public float distanciaMaximaMira = 3f;
     public float distanciaMaximaDisparo = 6f;
+
+    public float distanciaMinimaQueda = 1.5f;
+    public float distanciaMaximaQueda = 5f;
+
+    public bool cairDosDoisLados = true;
+
+    [Header("Aviso de impacto")]
+    public GameObject prefabIndicadorImpacto;
+    public LayerMask camadaGround;
+    public float alturaRaycast = 3f;
+    public float distanciaRaycast = 10f;
+    public float alturaIndicador = 0.03f;
 
     [Header("Vida da Vilã")]
     public int vidaMaxima = 8;
@@ -43,17 +53,13 @@ public class VilãCanhao : MonoBehaviour
     public AudioClip somDano;
     public AudioClip somMorte;
 
-    [Range(0f, 1f)]
-    public float volumeAtaque = 0.7f;
+    [Range(0f, 1f)] public float volumeAtaque = 0.7f;
+    [Range(0f, 1f)] public float volumeLancamento = 0.7f;
+    [Range(0f, 1f)] public float volumeDano = 0.7f;
+    [Range(0f, 1f)] public float volumeMorte = 0.8f;
 
-    [Range(0f, 1f)]
-    public float volumeLancamento = 0.7f;
-
-    [Range(0f, 1f)]
-    public float volumeDano = 0.7f;
-
-    [Range(0f, 1f)]
-    public float volumeMorte = 0.8f;
+    [Header("Distância entre impactos")]
+    public float distanciaMinimaEntreQuedas = 2f;
 
     private AudioSource audioSource;
 
@@ -63,6 +69,8 @@ public class VilãCanhao : MonoBehaviour
     private bool salvaIniciada;
 
     private Coroutine rotinaDano;
+
+    private List<float> destinosUsados = new List<float>();
 
     private void Awake()
     {
@@ -109,15 +117,11 @@ public class VilãCanhao : MonoBehaviour
 
                 TocarSom(somAtaque, volumeAtaque);
 
-                yield return new WaitForSeconds(
-                    tempoAnimacaoAtaque
-                );
+                yield return new WaitForSeconds(tempoAnimacaoAtaque);
 
                 atacando = false;
 
-                yield return new WaitForSeconds(
-                    Mathf.Max(0.1f, cooldown)
-                );
+                yield return new WaitForSeconds(Mathf.Max(0.1f, cooldown));
             }
             else
             {
@@ -142,22 +146,16 @@ public class VilãCanhao : MonoBehaviour
 
     private IEnumerator DispararSalva()
     {
+        destinosUsados.Clear();
+
         for (int i = 0; i < bombasPorSalva; i++)
         {
-            if (morreu || recebendoDano || !atacando)
-                yield break;
-
-            if (jogador == null)
+            if (recebendoDano || morreu)
                 yield break;
 
             DispararBomba();
 
-            if (i < bombasPorSalva - 1)
-            {
-                yield return new WaitForSeconds(
-                    intervaloEntreBombas
-                );
-            }
+            yield return new WaitForSeconds(intervaloEntreBombas);
         }
     }
 
@@ -174,45 +172,51 @@ public class VilãCanhao : MonoBehaviour
 
         if (projetil == null || rbBomba == null)
         {
-            Debug.LogError(
-                "O prefab da bomba precisa ter BolaCanhao e Rigidbody2D!"
-            );
-
+            Debug.LogError("O prefab precisa ter BolaCanhao e Rigidbody2D!");
             Destroy(bomba);
             return;
         }
 
-        rbBomba.bodyType = RigidbodyType2D.Dynamic;
+        rbBomba.linearDamping = 0f;
 
-        if (rbBomba.gravityScale <= 0f)
-            rbBomba.gravityScale = 1f;
+        // a bomba não pode colidir com a própria vilã
+        Collider2D colBomba = bomba.GetComponent<Collider2D>();
 
-        Vector2 posicaoJogador = jogador.position;
-
-        Vector2 variacao =
-            Random.insideUnitCircle * erroMira;
-
-        if (variacao.magnitude > distanciaMaximaMira)
+        if (colBomba != null)
         {
-            variacao =
-                variacao.normalized * distanciaMaximaMira;
+            foreach (Collider2D col in GetComponentsInChildren<Collider2D>())
+                Physics2D.IgnoreCollision(colBomba, col);
         }
-
-        Vector2 destino = posicaoJogador + variacao;
 
         Vector2 origem = pontoDisparo.position;
+
+        // Escolhe um destino aleatório diferente dos anteriores.
+        float destinoX = EscolherDestinoX();
+
+        // Procura o chão abaixo do destino, partindo perto da altura do jogador.
+        Vector2 inicioRaycast = new Vector2(
+            destinoX,
+            jogador.position.y + alturaRaycast
+        );
+
+        RaycastHit2D hit = Physics2D.Raycast(
+            inicioRaycast,
+            Vector2.down,
+            distanciaRaycast,
+            camadaGround
+        );
+
+        Debug.DrawRay(inicioRaycast, Vector2.down * distanciaRaycast, Color.red, 3f);
+
+        // Se não achar chão (buraco), mira na altura do jogador em vez de destruir a bomba.
+        Vector2 destino = hit.collider != null
+            ? hit.point
+            : new Vector2(destinoX, jogador.position.y);
+
+        // Calcula a trajetória.
         Vector2 delta = destino - origem;
 
-        if (delta.magnitude > distanciaMaximaDisparo)
-        {
-            destino = origem +
-                delta.normalized * distanciaMaximaDisparo;
-
-            delta = destino - origem;
-        }
-
-        float g =
-            Physics2D.gravity.y * rbBomba.gravityScale;
+        float g = Physics2D.gravity.y * rbBomba.gravityScale;
 
         float tempoVoo = Mathf.Clamp(
             delta.magnitude / Mathf.Max(0.1f, velocidadeBomba),
@@ -224,6 +228,21 @@ public class VilãCanhao : MonoBehaviour
             delta.x / tempoVoo,
             delta.y / tempoVoo - 0.5f * g * tempoVoo
         );
+
+        // Cria o indicador vermelho no local de impacto (só se houver chão).
+        if (hit.collider != null && prefabIndicadorImpacto != null)
+        {
+            Vector2 posicaoIndicador =
+                hit.point + Vector2.up * alturaIndicador;
+
+            projetil.ConfigurarAviso(
+                prefabIndicadorImpacto,
+                posicaoIndicador,
+                tempoVoo
+            );
+        }
+
+        Debug.DrawLine(origem, destino, Color.yellow, 3f);
 
         projetil.Lancar(
             velocidadeInicial.normalized,
@@ -264,9 +283,7 @@ public class VilãCanhao : MonoBehaviour
 
     private IEnumerator FinalizarDano()
     {
-        yield return new WaitForSeconds(
-            duracaoAnimacaoDano
-        );
+        yield return new WaitForSeconds(duracaoAnimacaoDano);
 
         recebendoDano = false;
         rotinaDano = null;
@@ -280,8 +297,7 @@ public class VilãCanhao : MonoBehaviour
 
         StopAllCoroutines();
 
-        Collider2D[] colliders =
-            GetComponentsInChildren<Collider2D>();
+        Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
 
         foreach (Collider2D col in colliders)
             col.enabled = false;
@@ -297,9 +313,7 @@ public class VilãCanhao : MonoBehaviour
 
     private IEnumerator DestruirAposMorte()
     {
-        yield return new WaitForSeconds(
-            duracaoAnimacaoMorte
-        );
+        yield return new WaitForSeconds(duracaoAnimacaoMorte);
 
         Destroy(gameObject);
     }
@@ -319,19 +333,83 @@ public class VilãCanhao : MonoBehaviour
     private void TocarSom(AudioClip som, float volume)
     {
         if (som != null && audioSource != null)
-        {
             audioSource.PlayOneShot(som, volume);
-        }
     }
+
     private void OnDrawGizmosSelected()
     {
-        // Distância em que a vilã detecta o jogador
         Gizmos.color = Color.yellow;
 
-        Gizmos.DrawWireSphere(
-            transform.position,
-            distanciaDeteccao
+        Gizmos.DrawWireSphere(transform.position, distanciaDeteccao);
+    }
+
+    private float EscolherDestinoX()
+    {
+        float limiteEsquerdo =
+            pontoDisparo.position.x - distanciaMaximaDisparo;
+
+        float limiteDireito =
+            pontoDisparo.position.x + distanciaMaximaDisparo;
+
+        float melhorCandidato = jogador.position.x;
+        float melhorDistancia = -1f;
+
+        for (int tentativa = 0; tentativa < 100; tentativa++)
+        {
+            float lado = Random.value < 0.5f ? -1f : 1f;
+
+            if (!cairDosDoisLados)
+            {
+                lado = jogador.position.x >= pontoDisparo.position.x
+                    ? 1f : -1f;
+            }
+
+            float distancia = Random.Range(
+                distanciaMinimaQueda,
+                distanciaMaximaQueda
+            );
+
+            float candidato = jogador.position.x + lado * distancia;
+
+            if (candidato < limiteEsquerdo ||
+                candidato > limiteDireito)
+                continue;
+
+            float menorDistancia = float.MaxValue;
+
+            foreach (float destino in destinosUsados)
+            {
+                float diferenca = Mathf.Abs(candidato - destino);
+
+                if (diferenca < menorDistancia)
+                    menorDistancia = diferenca;
+            }
+
+            // Na primeira bomba, qualquer posição é válida.
+            if (destinosUsados.Count == 0)
+                menorDistancia = float.MaxValue;
+
+            if (menorDistancia >= distanciaMinimaEntreQuedas)
+            {
+                destinosUsados.Add(candidato);
+                return candidato;
+            }
+
+            // Guarda a melhor posição caso não encontre
+            // uma que respeite a distância mínima.
+            if (menorDistancia > melhorDistancia)
+            {
+                melhorDistancia = menorDistancia;
+                melhorCandidato = candidato;
+            }
+        }
+
+        Debug.LogWarning(
+            "Não foi possível respeitar a distância mínima. Usando a melhor posição encontrada."
         );
+
+        destinosUsados.Add(melhorCandidato);
+
+        return melhorCandidato;
     }
 }
-

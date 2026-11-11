@@ -172,4 +172,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BolaCanhao
   dano: 1
   tempoDeVida: 5
-  escalaGravidade: 5
+  escalaGravidade: 1.5
