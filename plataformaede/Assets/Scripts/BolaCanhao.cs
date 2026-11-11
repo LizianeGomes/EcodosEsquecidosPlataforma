@@ -4,8 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class BolaCanhao : MonoBehaviour
 {
-    [Header("Configurações")]
-    public int dano = 1;
+    [Header("Configurações")] public int dano = 1;
     public float tempoDeVida = 5f;
     public float escalaGravidade = 1.5f; // quanto maior, mais fechado e rápido o arco
 
@@ -24,12 +23,13 @@ public class BolaCanhao : MonoBehaviour
         lancada = true;
         rb.linearVelocity = direcao * velocidade;
     }
+
     private void Start()
     {
         Destroy(gameObject, tempoDeVida);
     }
 
-    
+
 
     private void OnCollisionEnter2D(Collision2D colisao)
     {
@@ -42,8 +42,11 @@ public class BolaCanhao : MonoBehaviour
         if (jogador != null)
         {
             jogador.TomarDano(dano);
+            Destroy(gameObject);
+            return;
         }
 
+        // Colidiu com outro objeto, como o chão.
         Destroy(gameObject);
     }
 }

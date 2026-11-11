@@ -1,54 +1,94 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public class VilãCanhao : MonoBehaviour
 {
     [Header("Referências")]
     public Transform jogador;
     public Transform pontoDisparo;
-    public GameObject prefabBola;
+    public GameObject prefabBomba;
     public Animator anim;
 
     [Header("Ataque")]
-    public float cooldown = 3f;
-    public int bolasPorSalva = 3;
-    public float intervaloEntreBolas = 0.25f;
-    public float tempoAntesDoPrimeiroTiro = 0.3f;
-
-    [Header("Mira")]
-    public float velocidadeBola = 7f;
-    public float erroMira = 1f;
-    public float distanciaMaximaMira = 3f;
-
-    [Header("Estado")]
     public bool atacar = true;
-    
+    public float cooldown = 3f;
+    public int bombasPorSalva = 3;
+    public float intervaloEntreBombas = 0.25f;
+    public float tempoAnimacaoAtaque = 1.5f;
+
     [Header("Detecção do jogador")]
     public float distanciaDeteccao = 8f;
+
+    [Header("Mira")]
+    public float velocidadeBomba = 7f;
+    public float erroMira = 1f;
+    public float distanciaMaximaMira = 3f;
     public float distanciaMaximaDisparo = 6f;
-    
+
     [Header("Vida da Vilã")]
     public int vidaMaxima = 8;
     public int vidaAtual = 8;
+    public Image[] coracoes;
 
-    [Header("Corações")]
-    public UnityEngine.UI.Image[] coracoes;
+    [Header("Duração das animações")]
+    public float duracaoAnimacaoDano = 0.5f;
+    public float duracaoAnimacaoMorte = 1.5f;
+
+    [Header("Áudios")]
+    public AudioClip somAtaque;
+    public AudioClip somLancamento;
+    public AudioClip somDano;
+    public AudioClip somMorte;
+
+    [Range(0f, 1f)]
+    public float volumeAtaque = 0.7f;
+
+    [Range(0f, 1f)]
+    public float volumeLancamento = 0.7f;
+
+    [Range(0f, 1f)]
+    public float volumeDano = 0.7f;
+
+    [Range(0f, 1f)]
+    public float volumeMorte = 0.8f;
+
+    private AudioSource audioSource;
+
+    private bool atacando;
+    private bool recebendoDano;
+    private bool morreu;
+    private bool salvaIniciada;
+
+    private Coroutine rotinaDano;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+
+        if (anim == null)
+            anim = GetComponent<Animator>();
+    }
 
     private void Start()
     {
         vidaAtual = vidaMaxima;
         AtualizarCoracoes();
+
         if (anim == null)
-            anim = GetComponent<Animator>();
+        {
+            Debug.LogError("Animator da vilã não encontrado!");
+            return;
+        }
 
         StartCoroutine(CicloAtaque());
-        
     }
 
     private IEnumerator CicloAtaque()
     {
-        while (true)
+        while (!morreu)
         {
             bool jogadorDetectado =
                 jogador != null &&
@@ -57,101 +97,125 @@ public class VilãCanhao : MonoBehaviour
 
             if (atacar &&
                 jogadorDetectado &&
+                !recebendoDano &&
+                !atacando &&
                 pontoDisparo != null &&
-                prefabBola != null)
+                prefabBomba != null)
             {
-                if (anim != null)
-                    anim.SetTrigger("Atacar");
+                atacando = true;
+                salvaIniciada = false;
+
+                anim.SetTrigger("Atacar");
+
+                TocarSom(somAtaque, volumeAtaque);
 
                 yield return new WaitForSeconds(
-                    tempoAntesDoPrimeiroTiro
+                    tempoAnimacaoAtaque
                 );
 
-                for (int i = 0; i < bolasPorSalva; i++)
-                {
-                    if (!atacar)
-                        break;
+                atacando = false;
 
-                    // Se o jogador sair do alcance, interrompe a salva.
-                    if (jogador == null ||
-                        Vector2.Distance(
-                            transform.position,
-                            jogador.position
-                        ) > distanciaDeteccao)
-                    {
-                        break;
-                    }
-
-                    DispararBola();
-
-                    if (i < bolasPorSalva - 1)
-                    {
-                        yield return new WaitForSeconds(
-                            intervaloEntreBolas
-                        );
-                    }
-                }
+                yield return new WaitForSeconds(
+                    Mathf.Max(0.1f, cooldown)
+                );
             }
-
-            yield return new WaitForSeconds(
-                Mathf.Max(0.1f, cooldown)
-            );
+            else
+            {
+                yield return new WaitForSeconds(0.15f);
+            }
         }
     }
 
-    private void DispararBola()
+    // CHAMADO PELO ANIMATION EVENT
+    public void IniciarSalva()
     {
-        GameObject bola = Instantiate(
-            prefabBola,
+        if (morreu || recebendoDano || !atacando)
+            return;
+
+        if (salvaIniciada)
+            return;
+
+        salvaIniciada = true;
+
+        StartCoroutine(DispararSalva());
+    }
+
+    private IEnumerator DispararSalva()
+    {
+        for (int i = 0; i < bombasPorSalva; i++)
+        {
+            if (morreu || recebendoDano || !atacando)
+                yield break;
+
+            if (jogador == null)
+                yield break;
+
+            DispararBomba();
+
+            if (i < bombasPorSalva - 1)
+            {
+                yield return new WaitForSeconds(
+                    intervaloEntreBombas
+                );
+            }
+        }
+    }
+
+    private void DispararBomba()
+    {
+        GameObject bomba = Instantiate(
+            prefabBomba,
             pontoDisparo.position,
             Quaternion.identity
         );
 
-        BolaCanhao projetil = bola.GetComponent<BolaCanhao>();
-        Rigidbody2D rbBola = bola.GetComponent<Rigidbody2D>();
+        BolaCanhao projetil = bomba.GetComponent<BolaCanhao>();
+        Rigidbody2D rbBomba = bomba.GetComponent<Rigidbody2D>();
 
-        if (projetil == null || rbBola == null)
+        if (projetil == null || rbBomba == null)
         {
             Debug.LogError(
-                "O prefab da bola precisa ter BolaCanhao e Rigidbody2D!"
+                "O prefab da bomba precisa ter BolaCanhao e Rigidbody2D!"
             );
 
-            Destroy(bola);
+            Destroy(bomba);
             return;
         }
 
-        // garante física de verdade
-        rbBola.bodyType = RigidbodyType2D.Dynamic;
+        rbBomba.bodyType = RigidbodyType2D.Dynamic;
 
-        if (rbBola.gravityScale <= 0f)
-            rbBola.gravityScale = 1f;
+        if (rbBomba.gravityScale <= 0f)
+            rbBomba.gravityScale = 1f;
 
-        // alvo com erro de mira (igual ao seu)
         Vector2 posicaoJogador = jogador.position;
 
-        Vector2 variacao = Random.insideUnitCircle * erroMira;
+        Vector2 variacao =
+            Random.insideUnitCircle * erroMira;
 
         if (variacao.magnitude > distanciaMaximaMira)
-            variacao = variacao.normalized * distanciaMaximaMira;
+        {
+            variacao =
+                variacao.normalized * distanciaMaximaMira;
+        }
 
         Vector2 destino = posicaoJogador + variacao;
-        
+
         Vector2 origem = pontoDisparo.position;
         Vector2 delta = destino - origem;
-
 
         if (delta.magnitude > distanciaMaximaDisparo)
         {
             destino = origem +
-                      delta.normalized * distanciaMaximaDisparo;
+                delta.normalized * distanciaMaximaDisparo;
 
             delta = destino - origem;
         }
 
-        float g = Physics2D.gravity.y * rbBola.gravityScale; // negativo
+        float g =
+            Physics2D.gravity.y * rbBomba.gravityScale;
 
         float tempoVoo = Mathf.Clamp(
-            delta.magnitude / velocidadeBola,
+            delta.magnitude / Mathf.Max(0.1f, velocidadeBomba),
             0.4f,
             2.5f
         );
@@ -165,11 +229,13 @@ public class VilãCanhao : MonoBehaviour
             velocidadeInicial.normalized,
             velocidadeInicial.magnitude
         );
+
+        TocarSom(somLancamento, volumeLancamento);
     }
+
     public void TomarDano(int dano)
     {
-        Debug.Log("Vilã recebeu dano!");
-        if (vidaAtual <= 0)
+        if (morreu || dano <= 0)
             return;
 
         vidaAtual -= dano;
@@ -179,43 +245,93 @@ public class VilãCanhao : MonoBehaviour
 
         if (vidaAtual <= 0)
         {
-            Destroy(gameObject);
+            Morrer();
+            return;
         }
+
+        recebendoDano = true;
+
+        if (rotinaDano != null)
+            StopCoroutine(rotinaDano);
+
+        anim.ResetTrigger("Atacar");
+        anim.SetTrigger("LevarDano");
+
+        TocarSom(somDano, volumeDano);
+
+        rotinaDano = StartCoroutine(FinalizarDano());
+    }
+
+    private IEnumerator FinalizarDano()
+    {
+        yield return new WaitForSeconds(
+            duracaoAnimacaoDano
+        );
+
+        recebendoDano = false;
+        rotinaDano = null;
+    }
+
+    private void Morrer()
+    {
+        morreu = true;
+        atacando = false;
+        recebendoDano = false;
+
+        StopAllCoroutines();
+
+        Collider2D[] colliders =
+            GetComponentsInChildren<Collider2D>();
+
+        foreach (Collider2D col in colliders)
+            col.enabled = false;
+
+        anim.ResetTrigger("Atacar");
+        anim.ResetTrigger("LevarDano");
+        anim.SetTrigger("Morrer");
+
+        TocarSom(somMorte, volumeMorte);
+
+        StartCoroutine(DestruirAposMorte());
+    }
+
+    private IEnumerator DestruirAposMorte()
+    {
+        yield return new WaitForSeconds(
+            duracaoAnimacaoMorte
+        );
+
+        Destroy(gameObject);
     }
 
     private void AtualizarCoracoes()
     {
+        if (coracoes == null)
+            return;
+
         for (int i = 0; i < coracoes.Length; i++)
         {
             if (coracoes[i] != null)
-            {
                 coracoes[i].enabled = i < vidaAtual;
-            }
         }
     }
-    
-    [Header("Collider da Vilã")]
-    public Transform colliderAlvo;
-    public Vector2 posicaoColliderCooldown;
 
-    
-    public void MudarPosicaoCollider()
+    private void TocarSom(AudioClip som, float volume)
     {
-        Debug.Log("EVENTO DO COLLIDER FOI CHAMADO!");
-
-        if (colliderAlvo == null)
+        if (som != null && audioSource != null)
         {
-            Debug.LogError("Collider Alvo não foi atribuído no Inspector!");
-            return;
+            audioSource.PlayOneShot(som, volume);
         }
-
-        Debug.Log("Objeto alterado: " + colliderAlvo.name);
-        Debug.Log("Posição local antes: " + colliderAlvo.localPosition);
-
-        colliderAlvo.localPosition = posicaoColliderCooldown;
-
-        Debug.Log("Posição local depois: " + colliderAlvo.localPosition);
     }
+    private void OnDrawGizmosSelected()
+    {
+        // Distância em que a vilã detecta o jogador
+        Gizmos.color = Color.yellow;
 
-
+        Gizmos.DrawWireSphere(
+            transform.position,
+            distanciaDeteccao
+        );
+    }
 }
+
