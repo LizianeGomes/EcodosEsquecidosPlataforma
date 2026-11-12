@@ -10,72 +10,62 @@ public class PlataformaMovel : MonoBehaviour
     [Header("Movimento")]
     public float velocidade = 2f;
 
-    private Vector3 destino;
+    [Header("Passageiros")]
+    [SerializeField] private float margemTopo = 0.15f; // tolerância pra considerar "em cima"
+
     private Rigidbody2D rb;
-    private HashSet<Rigidbody2D> playersEmCima = new HashSet<Rigidbody2D>();
+    private bool indoParaB = true;
+
+    // detectados = quem tocou o topo no último passo da física
+    private HashSet<Rigidbody2D> detectados = new HashSet<Rigidbody2D>();
+    private List<Rigidbody2D> passageiros = new List<Rigidbody2D>();
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Kinematic;
-        transform.position = pontoA.position;
-        destino = pontoB.position;
+
+        rb.position = pontoA.position;
+        indoParaB = true;
     }
 
     void FixedUpdate()
     {
-        Vector3 posicaoAntes = transform.position;
+        // passageiros = quem estava em cima no passo anterior
+        passageiros.Clear();
+        passageiros.AddRange(detectados);
+        detectados.Clear();
 
-        Vector3 novaPos = Vector3.MoveTowards(transform.position, destino, velocidade * Time.fixedDeltaTime);
+        Vector2 alvo = indoParaB ? (Vector2)pontoB.position : (Vector2)pontoA.position;
+
+        Vector2 posicaoAntes = rb.position;
+        Vector2 novaPos = Vector2.MoveTowards(posicaoAntes, alvo, velocidade * Time.fixedDeltaTime);
+        Vector2 delta = novaPos - posicaoAntes;
+
         rb.MovePosition(novaPos);
 
-        Vector3 delta = novaPos - posicaoAntes;
-
-        foreach (Rigidbody2D playerRb in playersEmCima)
+        // leva quem está em cima junto com a plataforma
+        foreach (Rigidbody2D passageiro in passageiros)
         {
-            if (playerRb != null)
-            {
-                playerRb.position += (Vector2)delta;
-            }
+            if (passageiro != null)
+                passageiro.position += delta;
         }
 
-        if (Vector3.Distance(novaPos, destino) < 0.05f)
-        {
-            destino = (destino == (Vector3)pontoA.position) ? pontoB.position : pontoA.position;
-        }
+        if (Vector2.Distance(novaPos, alvo) < 0.05f)
+            indoParaB = !indoParaB;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log("[PLAT] ENTER com: " + collision.gameObject.name + " | tag: " + collision.gameObject.tag);
+        PlayerMovement jogador = collision.collider.GetComponentInParent<PlayerMovement>();
+        if (jogador == null) return;
 
-        if (!collision.gameObject.CompareTag("Player")) return;
+        // os pés do jogador precisam estar acima do topo da plataforma
+        float peDoJogador = collision.collider.bounds.min.y;
+        float topoDaPlataforma = collision.otherCollider.bounds.max.y;
 
-        foreach (ContactPoint2D contato in collision.contacts)
-        {
-            Debug.Log("[PLAT] normal.y = " + contato.normal.y);
-
-            if (contato.normal.y < -0.5f)
-            {
-                if (collision.rigidbody != null)
-                {
-                    playersEmCima.Add(collision.rigidbody);
-                    Debug.Log("[PLAT] ADICIONADO. Total na lista: " + playersEmCima.Count);
-                }
-                break;
-            }
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (!collision.gameObject.CompareTag("Player")) return;
-
-        if (collision.rigidbody != null)
-        {
-            playersEmCima.Remove(collision.rigidbody);
-            Debug.Log("[PLAT] REMOVIDO. Total na lista: " + playersEmCima.Count);
-        }
+        if (peDoJogador >= topoDaPlataforma - margemTopo)
+            detectados.Add(jogador.GetComponent<Rigidbody2D>());
     }
 
     void OnDrawGizmos()

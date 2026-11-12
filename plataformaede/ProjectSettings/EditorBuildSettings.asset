@@ -19,6 +19,12 @@ EditorBuildSettings:
     guid: 5437d641e01952940b5034b70f9ff803
   - enabled: 1
     path: Assets/Scenes/Fase2.unity
+    guid: b269905ebebf6d745a9d8f5e48dd6bc7
+  - enabled: 0
+    path: Assets/Scenes/Fase2.unity
     guid: e9eeed503b815e841b43e316c49eb39b
+  - enabled: 1
+    path: Assets/Scenes/Fase3.unity
+    guid: 7b4d5c454132d96438fa36621c95ad37
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
