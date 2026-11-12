@@ -1,4 +1,3 @@
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -74,6 +73,10 @@ public class PlayerMovement : MonoBehaviour
     private bool morto = false;
     private bool invulneravel = false;
     private bool proximoAtaqueEh2 = false;
+    
+    [Header("Cooldown do ataque")]
+    [SerializeField] private float tempoRecargaAtaque = 0.5f;
+    private float proximoAtaquePermitido = 0f;
 
     [SerializeField]
     private float tempoInvulneravel = 1f;
@@ -218,8 +221,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Atacar()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) && Time.time >= proximoAtaquePermitido)
         {
+            proximoAtaquePermitido = Time.time + tempoRecargaAtaque;
+
             proximoAtaqueEh2 = !proximoAtaqueEh2;
 
             if (proximoAtaqueEh2)
