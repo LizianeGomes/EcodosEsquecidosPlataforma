@@ -25,6 +25,23 @@ public class PlayerMovement : MonoBehaviour
     public float desaceleracaoGelo = 2f;
 
     private bool noGelo = false;
+    
+    [Header("Gosma")]
+    public float multiplicadorGosma = 0.4f;
+    private int gosmasSobrepostas = 0;
+
+    public float MultiplicadorVelocidade =>
+        gosmasSobrepostas > 0 ? multiplicadorGosma : 1f;
+
+    public void EntrarNaGosma()
+    {
+        gosmasSobrepostas++;
+    }
+
+    public void SairDaGosma()
+    {
+        gosmasSobrepostas = Mathf.Max(0, gosmasSobrepostas - 1);
+    }
 
     [Header("Áudio")]
     public AudioClip somPulo;
@@ -180,9 +197,9 @@ public class PlayerMovement : MonoBehaviour
         if (morto)
             return;
 
-        float velocidadeAtual = noGelo
+        float velocidadeAtual = (noGelo
             ? velocidadeNoGelo
-            : speed;
+            : speed) * MultiplicadorVelocidade;
 
         float velocidadeAlvo = moveX * velocidadeAtual;
 
