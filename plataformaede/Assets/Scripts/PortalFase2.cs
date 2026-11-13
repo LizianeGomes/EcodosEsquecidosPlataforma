@@ -20,7 +20,7 @@ public class PortalFase2 : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         
-        if (ProgressoFase.Instance != null && !ProgressoFase.Instance.Completo)
+        if (ProgressoFase.Instance == null || !ProgressoFase.Instance.Completo)
             return;
 
         ativado = true;

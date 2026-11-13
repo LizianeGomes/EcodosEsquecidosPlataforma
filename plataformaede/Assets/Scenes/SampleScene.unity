@@ -82272,7 +82272,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 4653ac96587fc1448bf288f21f2b4e78, type: 3}
+  m_Resource: {fileID: 8300000, guid: b65f8b7d13de0de4994faa3ab244ec49, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.1
   m_Pitch: 1
@@ -85169,6 +85169,7 @@ MonoBehaviour:
   desaceleracaoNormal: 50
   aceleracaoGelo: 8
   desaceleracaoGelo: 2
+  multiplicadorGosma: 0.4
   somPulo: {fileID: 0}
   somAtaque: {fileID: 8300000, guid: 8e96208d898580f47921f600a8b7cf3a, type: 3}
   somAndar: {fileID: 0}

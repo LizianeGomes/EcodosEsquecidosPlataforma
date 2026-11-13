@@ -292,6 +292,10 @@ public class VilãCanhao : MonoBehaviour
     private void Morrer()
     {
         morreu = true;
+        if (ProgressoFase.Instance != null)
+        {
+            ProgressoFase.Instance.RegistrarBossDerrotado();
+        }
         atacando = false;
         recebendoDano = false;
 
