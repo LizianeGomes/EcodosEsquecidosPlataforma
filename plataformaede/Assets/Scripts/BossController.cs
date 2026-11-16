@@ -34,14 +34,23 @@ public class BossController : MonoBehaviour, IDanificavel
 
     [Header("Morte")]
     public float tempoDestruicao = 2f;
+    
+    [Header("Vida Visual")]
+    public UnityEngine.UI.Image[] coracoesVida;
+    
+    [Header("Sequência de disparos")]
+    public int quantidadeBolas = 3;
+    public float intervaloEntreBolas = 0.3f;
 
     private float proximoAtaque;
     private bool segundaFase;
     private bool morreu;
+    private bool sequenciaDisparosAtiva = false;
 
     private void Start()
     {
         vidaAtual = vidaMaxima;
+        AtualizarCoracoes();
 
         if (anim == null)
             anim = GetComponent<Animator>();
@@ -71,6 +80,7 @@ public class BossController : MonoBehaviour, IDanificavel
 
             // Impede que a vida fique negativa.
             vidaAtual = Mathf.Max(vidaAtual, 0);
+            AtualizarCoracoes();
 
             Debug.Log("Vida do Boss: " + vidaAtual + "/" + vidaMaxima);
 
@@ -136,64 +146,73 @@ public class BossController : MonoBehaviour, IDanificavel
         proximoAtaque = Time.time + cooldownAtual;
     }
     
-    public void LancarBolaDeFogo()
+    private void LancarBolaDeFogo()
     {
-        if (morreu || jogador == null ||
-            prefabBolaDeFogo == null ||
-            pontoDisparo == null)
+        
+        Debug.Log("EVENTO DE DISPARO CHAMADO!");
+        
+        if (sequenciaDisparosAtiva || morreu)
             return;
+        
+        StartCoroutine(DispararSequencia());
+        
 
-        // Escolhe um ponto aleatório perto do jogador.
-        Vector2 variacao = new Vector2(
-            Random.Range(-variacaoAlvoBola.x, variacaoAlvoBola.x),
-            Random.Range(-variacaoAlvoBola.y, variacaoAlvoBola.y)
-        );
-
-        Vector2 alvoAleatorio =
-            (Vector2)jogador.position + variacao;
-
-        // Calcula a direção até o ponto escolhido.
-        Vector2 direcao =
-            (alvoAleatorio - (Vector2)pontoDisparo.position).normalized;
-
-        // Cria a bola.
-        GameObject bola = Instantiate(
-            prefabBolaDeFogo,
-            pontoDisparo.position,
-            Quaternion.identity
-        );
-
-        // Impede colisão com os colliders do próprio boss.
-        Collider2D[] collidersBoss =
-            GetComponentsInChildren<Collider2D>();
-
-        Collider2D[] collidersBola =
-            bola.GetComponentsInChildren<Collider2D>();
-
-        foreach (Collider2D bossCollider in collidersBoss)
-        {
-            foreach (Collider2D bolaCollider in collidersBola)
-            {
-                Physics2D.IgnoreCollision(
-                    bossCollider,
-                    bolaCollider
-                );
-            }
-        }
-
-        BolaDeFogoBoss projetil =
-            bola.GetComponent<BolaDeFogoBoss>();
-
-        if (projetil != null)
-        {
-            projetil.Inicializar(
-                direcao,
-                velocidadeBola,
-                danoBola
-            );
-        }
     }
+
     
+    private System.Collections.IEnumerator DispararSequencia()
+    {
+        sequenciaDisparosAtiva = true;
+
+        for (int i = 0; i < quantidadeBolas; i++)
+        {
+            if (morreu)
+            {
+                sequenciaDisparosAtiva = false;
+                yield break;
+            }
+
+            Vector2 variacao = new Vector2(
+                Random.Range(-variacaoAlvoBola.x, variacaoAlvoBola.x),
+                Random.Range(-variacaoAlvoBola.y, variacaoAlvoBola.y)
+            );
+
+            Vector2 alvoAleatorio = (Vector2)jogador.position + variacao;
+
+            Vector2 direcao =
+                (alvoAleatorio - (Vector2)pontoDisparo.position).normalized;
+
+            GameObject bola = Instantiate(
+                prefabBolaDeFogo,
+                pontoDisparo.position,
+                Quaternion.identity
+            );
+
+            Collider2D[] collidersBoss = GetComponentsInChildren<Collider2D>();
+            Collider2D[] collidersBola = bola.GetComponentsInChildren<Collider2D>();
+
+            foreach (Collider2D bossCollider in collidersBoss)
+            {
+                foreach (Collider2D bolaCollider in collidersBola)
+                {
+                    Physics2D.IgnoreCollision(bossCollider, bolaCollider);
+                }
+            }
+
+            BolaDeFogoBoss projetil = bola.GetComponent<BolaDeFogoBoss>();
+
+            if (projetil != null)
+            {
+                projetil.Inicializar(direcao, velocidadeBola, danoBola);
+            }
+
+            yield return new WaitForSeconds(intervaloEntreBolas);
+        }
+
+        // Só libera uma nova sequência depois das 3 bolas.
+        sequenciaDisparosAtiva = false;
+    }
+
     private void Morrer()
     {
         if (morreu)
@@ -231,6 +250,17 @@ public class BossController : MonoBehaviour, IDanificavel
             transform.position,
             distanciaDeteccao
         );
+    }
+    
+    private void AtualizarCoracoes()
+    {
+        for (int i = 0; i < coracoesVida.Length; i++)
+        {
+            if (coracoesVida[i] == null)
+                continue;
+
+            coracoesVida[i].gameObject.SetActive(i < vidaAtual);
+        }
     }
     
 }
