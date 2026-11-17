@@ -11,6 +11,11 @@ public class VilãCanhao : MonoBehaviour
     public Transform pontoDisparo;
     public GameObject prefabBomba;
     public Animator anim;
+    
+    [Header("Visual do Cooldown")]
+    public Image imagemCooldown;
+
+    private Coroutine rotinaCooldownVisual;
 
     [Header("Ataque")]
     public bool atacar = true;
@@ -84,6 +89,8 @@ public class VilãCanhao : MonoBehaviour
     {
         vidaAtual = vidaMaxima;
         AtualizarCoracoes();
+        if (imagemCooldown != null)
+            imagemCooldown.fillAmount = 1f;
 
         if (anim == null)
         {
@@ -121,7 +128,12 @@ public class VilãCanhao : MonoBehaviour
 
                 atacando = false;
 
+                IniciarCooldownVisual(cooldown);
+
                 yield return new WaitForSeconds(Mathf.Max(0.1f, cooldown));
+
+                if (imagemCooldown != null)
+                    imagemCooldown.fillAmount = 1f;
             }
             else
             {
@@ -155,7 +167,10 @@ public class VilãCanhao : MonoBehaviour
 
             DispararBomba();
 
+            IniciarCooldownVisual(intervaloEntreBombas);
+
             yield return new WaitForSeconds(intervaloEntreBombas);
+            
         }
     }
 
@@ -292,6 +307,11 @@ public class VilãCanhao : MonoBehaviour
     private void Morrer()
     {
         morreu = true;
+        if (imagemCooldown != null)
+            imagemCooldown.gameObject.SetActive(false);
+
+        if (rotinaCooldownVisual != null)
+            StopCoroutine(rotinaCooldownVisual);
         if (ProgressoFase.Instance != null)
         {
             ProgressoFase.Instance.RegistrarBossDerrotado();
@@ -415,5 +435,38 @@ public class VilãCanhao : MonoBehaviour
         destinosUsados.Add(melhorCandidato);
 
         return melhorCandidato;
+    }
+    
+    private void IniciarCooldownVisual(float duracao)
+    {
+        if (rotinaCooldownVisual != null)
+            StopCoroutine(rotinaCooldownVisual);
+
+        rotinaCooldownVisual = StartCoroutine(
+            AtualizarCooldownVisual(duracao)
+        );
+    }
+
+    private IEnumerator AtualizarCooldownVisual(float duracao)
+    {
+        float tempoInicio = Time.time;
+
+        if (imagemCooldown != null)
+            imagemCooldown.fillAmount = 0f;
+
+        while (Time.time < tempoInicio + duracao && !morreu)
+        {
+            float progresso = (Time.time - tempoInicio) / duracao;
+
+            if (imagemCooldown != null)
+                imagemCooldown.fillAmount = Mathf.Clamp01(progresso);
+
+            yield return null;
+        }
+
+        if (imagemCooldown != null && !morreu)
+            imagemCooldown.fillAmount = 1f;
+
+        rotinaCooldownVisual = null;
     }
 }

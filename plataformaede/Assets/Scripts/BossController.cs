@@ -37,6 +37,12 @@ public class BossController : MonoBehaviour, IDanificavel
     public Transform jogador;
     public Animator anim;
     public SpriteRenderer sprite;
+    
+    [Header("Áudio do ataque")]
+    public AudioSource audioSource;
+    public AudioClip somAtaque;
+    [Range(0f, 1f)]
+    public float volumeSomAtaque = 0.8f;
 
     [Header("Morte")]
     public float tempoDestruicao = 2f;
@@ -63,6 +69,9 @@ public class BossController : MonoBehaviour, IDanificavel
 
         if (sprite == null)
             sprite = GetComponent<SpriteRenderer>();
+        
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
 
         if (jogador == null)
         {
@@ -191,12 +200,17 @@ public class BossController : MonoBehaviour, IDanificavel
 
             Vector2 direcao =
                 (alvoAleatorio - (Vector2)pontoDisparo.position).normalized;
-
+            if (audioSource != null && somAtaque != null)
+            {
+                audioSource.PlayOneShot(somAtaque, volumeSomAtaque);
+            }
+            
             GameObject bola = Instantiate(
                 prefabBolaDeFogo,
                 pontoDisparo.position,
                 Quaternion.identity
             );
+            
 
             Collider2D[] collidersBoss = GetComponentsInChildren<Collider2D>();
             Collider2D[] collidersBola = bola.GetComponentsInChildren<Collider2D>();

@@ -147,7 +147,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 0797bb0eadf600f4eaad142e0daf1ee2, type: 3}
+  m_Resource: {fileID: 8300000, guid: a0900f250d9de3244aaf015b35f73924, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.1
   m_Pitch: 1
@@ -3790,6 +3790,7 @@ MonoBehaviour:
   pontoDisparo: {fileID: 1904813495}
   prefabBomba: {fileID: 3841046491723929616, guid: 5eb205c65dab2f348960fdd31c5fbb28, type: 3}
   anim: {fileID: 445637164}
+  imagemCooldown: {fileID: 798289587}
   atacar: 1
   cooldown: 3
   bombasPorSalva: 3

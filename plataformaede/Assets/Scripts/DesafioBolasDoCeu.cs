@@ -10,10 +10,10 @@ public class DesafioBolasDoCeu : MonoBehaviour
     public GameObject prefabBola;
     public GameObject prefabIndicadorImpacto;
 
-    [Header("Quantidade da chuva")]
-    public int quantidadeBolas = 10;
-    public float intervaloEntreOndas = 3f;
-    public int bolasPorOnda = 5;
+    [Header("Quantidade e intervalo da chuva")]
+    public int quantidadeBolas = 30;
+    public float intervaloMinimoEntreBolas = 0.2f;
+    public float intervaloMaximoEntreBolas = 0.7f;
     public float tempoAviso = 1.2f;
 
     [Header("Queda")]
@@ -92,45 +92,31 @@ public class DesafioBolasDoCeu : MonoBehaviour
 
     private IEnumerator IniciarChuva()
     {
-        int bolasCriadas = 0;
+        destinosUsados.Clear();
 
-        while (bolasCriadas < quantidadeBolas)
+        for (int i = 0; i < quantidadeBolas; i++)
         {
-            int quantidadeNestaOnda = Mathf.Min(
-                bolasPorOnda,
-                quantidadeBolas - bolasCriadas
+            if (!jogadorNoRaio)
+                yield break;
+
+            float destinoX = EscolherDestinoX();
+
+            Vector2 inicioRaycast = new Vector2(
+                destinoX,
+                jogador.position.y + alturaRaycast
             );
 
-            destinosUsados.Clear();
+            RaycastHit2D hit = Physics2D.Raycast(
+                inicioRaycast,
+                Vector2.down,
+                distanciaRaycast,
+                camadaGround
+            );
 
-            List<Vector2> posicoes = new List<Vector2>();
-            List<GameObject> indicadores = new List<GameObject>();
-
-            // Primeiro cria todos os avisos.
-            for (int i = 0; i < quantidadeNestaOnda; i++)
+            if (hit.collider != null)
             {
-                float destinoX = EscolherDestinoX();
-
-                Vector2 inicioRaycast = new Vector2(
-                    destinoX,
-                    jogador.position.y + alturaRaycast
-                );
-
-                RaycastHit2D hit = Physics2D.Raycast(
-                    inicioRaycast,
-                    Vector2.down,
-                    distanciaRaycast,
-                    camadaGround
-                );
-
-                if (hit.collider == null)
-                {
-                    Debug.LogWarning("Não foi encontrado chão para uma bola.");
-                    continue;
-                }
-
                 Vector2 impacto = hit.point +
-                    Vector2.up * alturaIndicador;
+                                  Vector2.up * alturaIndicador;
 
                 GameObject indicador = Instantiate(
                     prefabIndicadorImpacto,
@@ -138,63 +124,32 @@ public class DesafioBolasDoCeu : MonoBehaviour
                     Quaternion.identity
                 );
 
-                indicadores.Add(indicador);
-
                 Vector2 origemBola = new Vector2(
                     destinoX,
                     hit.point.y + alturaQueda
                 );
 
-                posicoes.Add(origemBola);
-            }
-
-            // Aguarda os avisos aparecerem.
-            yield return new WaitForSeconds(tempoAviso);
-
-            // Remove todos os avisos.
-            foreach (GameObject indicador in indicadores)
-            {
-                if (indicador != null)
-                    Destroy(indicador);
-            }
-
-            // Agora todas as bolas desta onda caem juntas.
-            foreach (Vector2 posicao in posicoes)
-            {
-                GameObject bola = Instantiate(
-                    prefabBola,
-                    posicao,
-                    Quaternion.identity
+                StartCoroutine(
+                    PrepararQueda(origemBola, indicador)
                 );
-
-                BolaQuedaDesafio scriptBola =
-                    bola.GetComponent<BolaQuedaDesafio>();
-
-                if (scriptBola != null)
-                {
-                    scriptBola.Inicializar(
-                        velocidadeQueda,
-                        danoBola,
-                        camadaGround
-                    );
-                }
-                else
-                {
-                    Debug.LogError(
-                        "O prefab precisa ter BolaQuedaDesafio!"
-                    );
-
-                    Destroy(bola);
-                }
+            }
+            else
+            {
+                Debug.LogWarning(
+                    "Não foi encontrado chão para uma bola."
+                );
             }
 
-            bolasCriadas += quantidadeNestaOnda;
+            float intervalo = Random.Range(
+                intervaloMinimoEntreBolas,
+                intervaloMaximoEntreBolas
+            );
 
-            if (bolasCriadas < quantidadeBolas)
-                yield return new WaitForSeconds(intervaloEntreOndas);
+            yield return new WaitForSeconds(intervalo);
         }
-    }
 
+        rotinaChuva = null;
+    }
     
     private float EscolherDestinoX()
     {
@@ -286,6 +241,37 @@ public class DesafioBolasDoCeu : MonoBehaviour
             transform.position,
             distanciaDeteccao
         );
+    }
+    
+    private IEnumerator PrepararQueda(Vector2 origemBola, GameObject indicador)
+    {
+        yield return new WaitForSeconds(tempoAviso);
+
+        if (indicador != null)
+            Destroy(indicador);
+
+        GameObject bola = Instantiate(
+            prefabBola,
+            origemBola,
+            Quaternion.identity
+        );
+
+        BolaQuedaDesafio scriptBola =
+            bola.GetComponent<BolaQuedaDesafio>();
+
+        if (scriptBola != null)
+        {
+            scriptBola.Inicializar(
+                velocidadeQueda,
+                danoBola,
+                camadaGround
+            );
+        }
+        else
+        {
+            Debug.LogError("O prefab precisa ter BolaQuedaDesafio!");
+            Destroy(bola);
+        }
     }
 
 }
