@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossController : MonoBehaviour, IDanificavel
 {
@@ -17,6 +18,11 @@ public class BossController : MonoBehaviour, IDanificavel
     public int vidaParaSegundaFase = 5;
     public float cooldownFase1 = 3f;
     public float cooldownFase2 = 1.5f;
+    
+    [Header("Visual do Cooldown")]
+    public Image imagemCooldown;
+
+    private float duracaoCooldownAtual;
 
     [Header("Ataque")]
     public float distanciaAtaque = 10f;
@@ -105,6 +111,7 @@ public class BossController : MonoBehaviour, IDanificavel
 
     private void Update()
     {
+        AtualizarVisualCooldown();
         if (morreu || jogador == null)
             return;
 
@@ -139,11 +146,14 @@ public class BossController : MonoBehaviour, IDanificavel
 
         anim.SetTrigger("Atacar");
 
-        float cooldownAtual = segundaFase
+        duracaoCooldownAtual = segundaFase
             ? cooldownFase2
             : cooldownFase1;
 
-        proximoAtaque = Time.time + cooldownAtual;
+        proximoAtaque = Time.time + duracaoCooldownAtual;
+
+        if (imagemCooldown != null)
+            imagemCooldown.fillAmount = 0f;
     }
     
     private void LancarBolaDeFogo()
@@ -262,5 +272,20 @@ public class BossController : MonoBehaviour, IDanificavel
             coracoesVida[i].gameObject.SetActive(i < vidaAtual);
         }
     }
-    
+    private void AtualizarVisualCooldown()
+    {
+        if (imagemCooldown == null)
+            return;
+
+        float tempoRestante = proximoAtaque - Time.time;
+
+        if (duracaoCooldownAtual <= 0)
+        {
+            imagemCooldown.fillAmount = 1f;
+            return;
+        }
+
+        imagemCooldown.fillAmount = 1f -
+                                    Mathf.Clamp01(tempoRestante / duracaoCooldownAtual);
+    }
 }

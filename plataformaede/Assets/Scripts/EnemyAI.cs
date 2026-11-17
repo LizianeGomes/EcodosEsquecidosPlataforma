@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour, IDanificavel
 {
@@ -11,6 +12,7 @@ public class EnemyAI : MonoBehaviour, IDanificavel
     [Header("Movimento")]
     public float velocidadeMovimento = 2f;
     public float distanciaDeteccao = 8f;
+    
 
     [Header("Limites da Arena")]
     public Transform limiteEsquerdo;
@@ -28,11 +30,15 @@ public class EnemyAI : MonoBehaviour, IDanificavel
     public float intervaloEntreDisparos = 0.8f;
     public float cooldownLongo = 3f;
     
+    [Header("Visual do Cooldown")]
+    public Image imagemCooldown;
+    
     private Animator anim;
     private Rigidbody2D rb;
 
     private bool morto = false;
     private bool voltadoDireita = true;
+    private Coroutine rotinaCooldownVisual;
 
     private float posicaoY;
     private float posicaoZ;
@@ -50,6 +56,9 @@ public class EnemyAI : MonoBehaviour, IDanificavel
 
         posicaoY = transform.position.y;
         posicaoZ = transform.position.z;
+        
+        if (imagemCooldown != null)
+            imagemCooldown.fillAmount = 1f;
 
         
         DefinirIdleDirecao(true);
@@ -80,8 +89,9 @@ public class EnemyAI : MonoBehaviour, IDanificavel
             if (morto)
                 yield break;
 
-            
             DefinirIdleDirecao(voltadoDireita);
+
+            Debug.Log("CHAMANDO COOLDOWN VISUAL!");
 
             yield return new WaitForSeconds(cooldownLongo);
         }
@@ -187,6 +197,7 @@ public class EnemyAI : MonoBehaviour, IDanificavel
             {
                 anim.SetTrigger("atacando2");
             }
+            IniciarCooldownVisual(intervaloEntreDisparos);
 
             
             if (projetilPrefab != null && pontoDisparo != null)
@@ -277,15 +288,22 @@ public class EnemyAI : MonoBehaviour, IDanificavel
 
      void Morrer()
     {
+        
         if (morto)
             return;
 
         morto = true;
+        
+        if (imagemCooldown != null)
+            imagemCooldown.gameObject.SetActive(false);
+        
         if (vidaUI != null)
             vidaUI.gameObject.SetActive(false); 
 
         if (ProgressoFase.Instance != null)
             ProgressoFase.Instance.RegistrarBossDerrotado();
+        if (rotinaCooldownVisual != null)
+            StopCoroutine(rotinaCooldownVisual);
 
         StopAllCoroutines();
 
@@ -310,7 +328,63 @@ public class EnemyAI : MonoBehaviour, IDanificavel
 
         if (col != null)
             col.enabled = false;
+        
 
       
+    }
+     
+     
+    IEnumerator AguardarCooldownVisual()
+    {
+        Debug.Log("COOLDOWN VISUAL INICIADO!");
+        float tempoInicio = Time.time;
+        float duracao = cooldownLongo;
+
+        if (imagemCooldown != null)
+            imagemCooldown.fillAmount = 0f;
+
+        while (Time.time < tempoInicio + duracao && !morto)
+        {
+            float progresso = (Time.time - tempoInicio) / duracao;
+
+            if (imagemCooldown != null)
+                imagemCooldown.fillAmount = Mathf.Clamp01(progresso);
+
+            yield return null;
+        }
+
+        if (imagemCooldown != null && !morto)
+            imagemCooldown.fillAmount = 1f;
+    }
+    void IniciarCooldownVisual(float duracao)
+    {
+        if (rotinaCooldownVisual != null)
+            StopCoroutine(rotinaCooldownVisual);
+
+        rotinaCooldownVisual = StartCoroutine(
+            AtualizarCooldownVisual(duracao)
+        );
+    }
+    IEnumerator AtualizarCooldownVisual(float duracao)
+    {
+        float tempoInicio = Time.time;
+
+        if (imagemCooldown != null)
+            imagemCooldown.fillAmount = 0f;
+
+        while (Time.time < tempoInicio + duracao && !morto)
+        {
+            float progresso = (Time.time - tempoInicio) / duracao;
+
+            if (imagemCooldown != null)
+                imagemCooldown.fillAmount = Mathf.Clamp01(progresso);
+
+            yield return null;
+        }
+
+        if (imagemCooldown != null && !morto)
+            imagemCooldown.fillAmount = 1f;
+
+        rotinaCooldownVisual = null;
     }
 }
