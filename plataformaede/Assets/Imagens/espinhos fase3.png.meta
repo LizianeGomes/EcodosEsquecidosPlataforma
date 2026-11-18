@@ -181,10 +181,10 @@ TextureImporter:
       name: espinhos fase3_0
       rect:
         serializedVersion: 2
-        x: 119
-        y: 186
-        width: 2099
-        height: 914
+        x: 104
+        y: 180
+        width: 1191
+        height: 1086
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,6 +195,50 @@ TextureImporter:
       bones: []
       spriteID: 964b7b5a5acfc3470800000000000000
       internalID: 8375847195382363241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: espinhos fase3_2
+      rect:
+        serializedVersion: 2
+        x: 1298
+        y: 184
+        width: 508
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8bfec3323521fd46ad293074f986fa1
+      internalID: -1683157817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: espinhos fase3_1
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 188
+        width: 418
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 757435c754bee844cb470bf4d657392a
+      internalID: -1197484529
       vertices: []
       indices: 
       edges: []
@@ -211,9 +255,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":750.0,"y":750.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       espinhos fase3_0: 8375847195382363241
+      espinhos fase3_1: -1197484529
+      espinhos fase3_2: -1683157817
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
