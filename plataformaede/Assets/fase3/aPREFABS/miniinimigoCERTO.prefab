@@ -208,3 +208,5 @@ MonoBehaviour:
   anim: {fileID: 453986474029782598}
   nomeEstadoMorte: morte
   tempoAnimacaoMorte: 0.5
+  somMorte: {fileID: 8300000, guid: db0ebbcc0c038c04da2bf908cbacb6dc, type: 3}
+  volumeSomMorte: 1

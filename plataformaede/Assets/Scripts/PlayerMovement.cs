@@ -452,6 +452,60 @@ public class PlayerMovement : MonoBehaviour
         checkpointAtual = novoCheckpoint;
         Debug.Log("Checkpoint salvo: " + novoCheckpoint.name);
     }
+    
+    
+    public void ReiniciarNoCheckpoint()
+    {
+        // Define a posição do último checkpoint.
+        Vector3 novaPosicao = checkpointAtual != null
+            ? checkpointAtual.position
+            : respawnPoint != null
+                ? respawnPoint.position
+                : transform.position;
+
+        // Guarda a posição anterior.
+        Vector3 posicaoAnterior = transform.position;
+
+        // Reativa o jogador e zera a velocidade.
+        rb.simulated = true;
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+
+        // Move o jogador para o checkpoint.
+        transform.position = novaPosicao;
+
+        // Recupera toda a vida e os três corações.
+        vidaAtual = maxVida;
+        vidasRestantes = vidasMaximas;
+
+        if (vidaUI != null)
+            vidaUI.AtualizarVida(vidasRestantes);
+
+        morto = false;
+        invulneravel = true;
+
+        StartCoroutine(InvulnerabilidadeTemporaria());
+
+        // Atualiza a posição da câmera.
+        Unity.Cinemachine.CinemachineCamera vcam =
+            FindFirstObjectByType<Unity.Cinemachine.CinemachineCamera>();
+
+        if (vcam != null)
+        {
+            vcam.OnTargetObjectWarped(
+                transform,
+                novaPosicao - posicaoAnterior
+            );
+        }
+
+        // Atualiza o Parallax.
+        Parallax[] camadasParallax =
+            FindObjectsByType<Parallax>(FindObjectsSortMode.None);
+
+        foreach (Parallax camada in camadasParallax)
+            camada.ResetLastCameraPosition();
+    }
+
 
     private System.Collections.IEnumerator InvulnerabilidadeTemporaria()
     {

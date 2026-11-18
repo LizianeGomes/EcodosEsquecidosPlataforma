@@ -58,6 +58,8 @@ public class BossController : MonoBehaviour, IDanificavel
     private bool segundaFase;
     private bool morreu;
     private bool sequenciaDisparosAtiva = false;
+    
+    public static bool bossDerrotado = false;
 
     private void Start()
     {
@@ -210,6 +212,7 @@ public class BossController : MonoBehaviour, IDanificavel
                 pontoDisparo.position,
                 Quaternion.identity
             );
+            Destroy(bola, 2f);
             
 
             Collider2D[] collidersBoss = GetComponentsInChildren<Collider2D>();
@@ -237,12 +240,21 @@ public class BossController : MonoBehaviour, IDanificavel
         sequenciaDisparosAtiva = false;
     }
 
+    
     private void Morrer()
     {
         if (morreu)
             return;
 
         morreu = true;
+
+        // Registra a derrota do boss apenas uma vez.
+        if (ProgressoFase.Instance != null)
+        {
+            ProgressoFase.Instance.RegistrarBossDerrotado();
+        }
+
+        bossDerrotado = true;
 
         anim.ResetTrigger("Atacar");
         anim.ResetTrigger("Dano");
@@ -265,6 +277,7 @@ public class BossController : MonoBehaviour, IDanificavel
 
         anim.SetTrigger("Morte");
     }
+
     private void OnDrawGizmosSelected()
     {
         

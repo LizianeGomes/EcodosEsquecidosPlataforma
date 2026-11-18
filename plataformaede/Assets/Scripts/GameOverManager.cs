@@ -9,6 +9,7 @@ public class GameOverManager : MonoBehaviour
 
     [Header("Som de Game Over")]
     public AudioClip somGameOver;
+
     [Range(0f, 1f)]
     public float volumeGameOver = 0.8f;
 
@@ -41,8 +42,25 @@ public class GameOverManager : MonoBehaviour
 
     public void Reiniciar()
     {
+        PlayerMovement jogador =
+            FindFirstObjectByType<PlayerMovement>();
+
+        if (jogador == null)
+        {
+            Debug.LogError("PlayerMovement não foi encontrado!");
+            return;
+        }
+
+        // Reativa o tempo do jogo.
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        // Fecha o painel de Game Over.
+        gameOverPanel.SetActive(false);
+
+        // Retorna o jogador ao último checkpoint.
+        jogador.ReiniciarNoCheckpoint();
+
+        Debug.Log("Jogador reiniciado no último checkpoint!");
     }
 
     public void IrParaMenu()

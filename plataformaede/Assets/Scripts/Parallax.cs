@@ -3,8 +3,7 @@ using UnityEngine;
 public class Parallax : MonoBehaviour
 {
     public Transform camera;
-    public float parallaxFactor = 0.5f; // 0 = fica parado, 1 = segue igual à câmera
-
+    public float parallaxFactor = 0.5f;
     private Vector3 lastCameraPosition;
 
     void Start()

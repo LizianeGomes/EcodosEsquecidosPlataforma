@@ -30,6 +30,13 @@ public class EnemyAI : MonoBehaviour, IDanificavel
     public float intervaloEntreDisparos = 0.8f;
     public float cooldownLongo = 3f;
     
+    [Header("Áudio do ataque")]
+    public AudioSource audioSource;
+    public AudioClip somAtaque;
+
+    [Range(0f, 1f)]
+    public float volumeSomAtaque = 0.8f;
+    
     [Header("Visual do Cooldown")]
     public Image imagemCooldown;
     
@@ -53,6 +60,9 @@ public class EnemyAI : MonoBehaviour, IDanificavel
 
         rb = GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Kinematic;
+        
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
 
         posicaoY = transform.position.y;
         posicaoZ = transform.position.z;
@@ -198,6 +208,11 @@ public class EnemyAI : MonoBehaviour, IDanificavel
                 anim.SetTrigger("atacando2");
             }
             IniciarCooldownVisual(intervaloEntreDisparos);
+            // Reproduz o som a cada disparo.
+            if (audioSource != null && somAtaque != null)
+            {
+                audioSource.PlayOneShot(somAtaque, volumeSomAtaque);
+            }
 
             
             if (projetilPrefab != null && pontoDisparo != null)

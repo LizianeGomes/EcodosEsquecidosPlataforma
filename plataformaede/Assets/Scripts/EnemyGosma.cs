@@ -23,6 +23,14 @@ public class EnemyGosma : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private string nomeEstadoMorte = "";  // deixe vazio se não tiver animação de morte
     [SerializeField] private float tempoAnimacaoMorte = 0.5f;
+    
+    [Header("Áudio da morte")]
+    [SerializeField] private AudioClip somMorte;
+
+    [Range(0f, 1f)]
+    [SerializeField] private float volumeSomMorte = 0.8f;
+
+    private AudioSource audioSource;
 
     private Rigidbody2D rb;
     private Collider2D col;
@@ -34,6 +42,13 @@ public class EnemyGosma : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+        
+        audioSource = GetComponent<AudioSource>();
+
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+
+        audioSource.playOnAwake = false;
 
         if (anim == null)
             anim = GetComponentInChildren<Animator>();
@@ -135,6 +150,12 @@ public class EnemyGosma : MonoBehaviour
         if (morto) return;
         morto = true;
 
+        // Reproduz o som da morte
+        if (somMorte != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(somMorte, volumeSomMorte);
+        }
+
         foreach (Collider2D c in GetComponentsInChildren<Collider2D>())
             c.enabled = false;
 
@@ -148,7 +169,7 @@ public class EnemyGosma : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(gameObject, 1f);
         }
     }
 
