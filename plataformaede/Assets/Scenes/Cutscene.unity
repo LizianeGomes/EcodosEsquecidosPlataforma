@@ -323,7 +323,7 @@ MonoBehaviour:
   videoPlayer: {fileID: 0}
   proximaCena: SampleScene
   textoPular: {fileID: 928392262}
-  atrasoParaAparecer: 4
+  atrasoParaAparecer: 3
   duracaoTexto: 3
 --- !u!328 &652510250
 VideoPlayer:

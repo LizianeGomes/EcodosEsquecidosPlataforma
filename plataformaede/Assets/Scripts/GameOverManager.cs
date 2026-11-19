@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,18 +20,26 @@ public class GameOverManager : MonoBehaviour
     {
         Instance = this;
 
+        // Primeiro cria o AudioSource.
         audioGameOver = gameObject.AddComponent<AudioSource>();
+
+        // Depois configura suas propriedades.
         audioGameOver.playOnAwake = false;
         audioGameOver.loop = false;
         audioGameOver.ignoreListenerPause = true;
+        audioGameOver.spatialBlend = 0f;
     }
 
     public void MostrarGameOver()
     {
-        gameOverPanel.SetActive(true);
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(true);
+        else
+            Debug.LogError("GameOverPanel não está associado no Inspector!");
 
         if (somGameOver != null)
         {
+            audioGameOver.Stop();
             audioGameOver.PlayOneShot(
                 somGameOver,
                 volumeGameOver
@@ -51,11 +60,15 @@ public class GameOverManager : MonoBehaviour
             return;
         }
 
+        // Interrompe o som de Game Over.
+        audioGameOver.Stop();
+
         // Reativa o tempo do jogo.
         Time.timeScale = 1f;
 
-        // Fecha o painel de Game Over.
-        gameOverPanel.SetActive(false);
+        // Fecha o painel.
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(false);
 
         // Retorna o jogador ao último checkpoint.
         jogador.ReiniciarNoCheckpoint();
@@ -65,12 +78,16 @@ public class GameOverManager : MonoBehaviour
 
     public void IrParaMenu()
     {
+        audioGameOver.Stop();
+
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }
 
     public void SairDoJogo()
     {
+        audioGameOver.Stop();
+
         Time.timeScale = 1f;
         Application.Quit();
 
