@@ -60,6 +60,7 @@ public class BossController : MonoBehaviour, IDanificavel
     private bool sequenciaDisparosAtiva = false;
     
     public static bool bossDerrotado = false;
+    private bool ataqueEmAndamento;
 
     private void Start()
     {
@@ -115,8 +116,10 @@ public class BossController : MonoBehaviour, IDanificavel
                 Debug.Log("Boss entrou na segunda fase!");
             }
 
-            // Reproduz a animação de dano.
-            anim.SetTrigger("Dano");
+            if (!ataqueEmAndamento)
+            {
+                anim.SetTrigger("Dano");
+            }
 
     }
 
@@ -153,15 +156,18 @@ public class BossController : MonoBehaviour, IDanificavel
 
     private void Atacar()
     {
-        if (morreu) return;
-
-        anim.SetTrigger("Atacar");
+        if (morreu || sequenciaDisparosAtiva || ataqueEmAndamento)
+            return;
 
         duracaoCooldownAtual = segundaFase
             ? cooldownFase2
             : cooldownFase1;
 
         proximoAtaque = Time.time + duracaoCooldownAtual;
+
+        ataqueEmAndamento = true;
+
+        anim.SetTrigger("Atacar");
 
         if (imagemCooldown != null)
             imagemCooldown.fillAmount = 0f;
@@ -190,6 +196,7 @@ public class BossController : MonoBehaviour, IDanificavel
             if (morreu)
             {
                 sequenciaDisparosAtiva = false;
+                ataqueEmAndamento = false;
                 yield break;
             }
 
@@ -236,8 +243,8 @@ public class BossController : MonoBehaviour, IDanificavel
             yield return new WaitForSeconds(intervaloEntreBolas);
         }
 
-        // Só libera uma nova sequência depois das 3 bolas.
         sequenciaDisparosAtiva = false;
+        ataqueEmAndamento = false;
     }
 
     

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -16,14 +17,13 @@ public class EnemyGosma : MonoBehaviour
     [SerializeField] private float tempoEntreViradas = 0.2f;
 
     [Header("Pisão")]
-    [SerializeField] private float margemPisao = 0.2f;
     [SerializeField] private float forcaRebote = 10f;
 
     [Header("Morte")]
     [SerializeField] private Animator anim;
     [SerializeField] private string nomeEstadoMorte = "";  // deixe vazio se não tiver animação de morte
     [SerializeField] private float tempoAnimacaoMorte = 0.5f;
-    
+
     [Header("Áudio da morte")]
     [SerializeField] private AudioClip somMorte;
 
@@ -42,7 +42,7 @@ public class EnemyGosma : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
-        
+
         audioSource = GetComponent<AudioSource>();
 
         if (audioSource == null)
@@ -111,13 +111,24 @@ public class EnemyGosma : MonoBehaviour
         AplicarVisual();
     }
 
-    // Assume que o sprite original olha para a DIREITA.
-    // Se olhar para a esquerda, troque Mathf.Abs(escala.x) * direcao por .
+    // O sinal negativo faz o visual funcionar com um sprite que originalmente olha para a ESQUERDA.
+    // Se o seu sprite olhar para a direita, tire o sinal negativo.
     private void AplicarVisual()
     {
         Vector3 escala = transform.localScale;
         escala.x = -Mathf.Abs(escala.x) * direcao;
         transform.localScale = escala;
+    }
+
+    // Chamado pelo script da cabeça (EnemyGosmaCabeca) quando o player pisa
+    public void Pisado(Rigidbody2D rbJogador)
+    {
+        if (morto) return;
+
+        if (rbJogador != null)
+            rbJogador.linearVelocity = new Vector2(rbJogador.linearVelocity.x, forcaRebote);
+
+        Morrer();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -127,22 +138,17 @@ public class EnemyGosma : MonoBehaviour
         PlayerMovement jogador = collision.collider.GetComponentInParent<PlayerMovement>();
         if (jogador == null) return;
 
-        Rigidbody2D rbJogador = jogador.GetComponent<Rigidbody2D>();
+        StartCoroutine(DanoSeNaoForPisado(jogador));
+    }
 
-        bool pesAcima = collision.collider.bounds.min.y >= col.bounds.max.y - margemPisao;
-        bool caindo = rbJogador != null && rbJogador.linearVelocity.y <= 0.1f;
+    private IEnumerator DanoSeNaoForPisado(PlayerMovement jogador)
+    {
+        // Espera o fim do passo de física. Se a cabeça foi pisada nesse toque,
+        // 'morto' já terá virado true e o dano é cancelado.
+        yield return new WaitForFixedUpdate();
 
-        if (pesAcima && caindo)
-        {
-            // pisão: o player quica e o inimigo morre
-            rbJogador.linearVelocity = new Vector2(rbJogador.linearVelocity.x, forcaRebote);
-            Morrer();
-        }
-        else
-        {
-            // encostou de lado: tira um coração
+        if (!morto && jogador != null)
             jogador.PerderCoracaoNoLocal();
-        }
     }
 
     private void Morrer()
@@ -152,9 +158,7 @@ public class EnemyGosma : MonoBehaviour
 
         // Reproduz o som da morte
         if (somMorte != null && audioSource != null)
-        {
             audioSource.PlayOneShot(somMorte, volumeSomMorte);
-        }
 
         foreach (Collider2D c in GetComponentsInChildren<Collider2D>())
             c.enabled = false;
